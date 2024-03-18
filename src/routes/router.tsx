@@ -1,5 +1,4 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
-import { Suspense } from "react";
 import Album from "../pages/album/Album";
 import DiaryDetail from "../pages/diaryDetail/DiaryDetail";
 import Home from "../pages/home/Home";
