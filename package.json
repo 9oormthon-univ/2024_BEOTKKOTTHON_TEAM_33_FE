@@ -38,7 +38,8 @@
     "lint-staged": "^15.2.2",
     "typescript": "^5.2.2",
     "vite": "^5.1.6",
-    "vite-plugin-pwa": "^0.19.2"
+    "vite-plugin-pwa": "^0.19.2",
+    "vite-tsconfig-paths": "^4.3.2"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --fix"
