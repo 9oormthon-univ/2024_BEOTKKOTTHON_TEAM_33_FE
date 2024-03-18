@@ -9,6 +9,7 @@ import MyPage from "../pages/myPage/MyPage";
 import OnBoarding from "../pages/onBoarding/OnBoarding";
 import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
+import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +22,12 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <OnBoarding />
+        element: (
+          <>
+            <Home />
+            <BottomNavBar />
+          </>
+        )
       },
       {
         path: "/album",
@@ -32,8 +38,8 @@ const router = createBrowserRouter([
         element: <DiaryDetail />
       },
       {
-        path: "/home",
-        element: <Home />
+        path: "/onBoarding",
+        element: <OnBoarding />
       },
       {
         path: "/login",
@@ -41,7 +47,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/myCollection",
-        element: <MyCollection />
+        element: (
+          <>
+            <MyCollection />
+            <BottomNavBar />
+          </>
+        )
       },
       {
         path: "/myPage",
@@ -49,7 +60,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/otherCollection",
-        element: <OtherCollection />
+        element: (
+          <>
+            <OtherCollection />
+            <BottomNavBar />
+          </>
+        )
       },
       {
         path: "/writeDiary",
