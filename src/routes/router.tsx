@@ -9,6 +9,7 @@ import OnBoarding from "../pages/onBoarding/OnBoarding";
 import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
 import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
+import Header from "@components/HeaderNav/HeaderNav";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <>
+            <Header type="withLogo" text="" />
             <Home />
             <BottomNavBar />
           </>
