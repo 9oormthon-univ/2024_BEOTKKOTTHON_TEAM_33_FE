@@ -1,5 +1,3 @@
-import React from "react";
-
 const OtherCollection = () => {
   return <div>OtherCollection</div>;
 };

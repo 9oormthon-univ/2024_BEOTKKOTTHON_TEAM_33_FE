@@ -1,7 +1,12 @@
-import React from "react";
+import BaseButton from "@components/BaseButton/BaseButton";
 
 const Home = () => {
-  return <div>Home</div>;
+  return (
+    <div>
+      <BaseButton buttonType="abled">abled</BaseButton>
+      <BaseButton buttonType="disabled">disabled</BaseButton>
+    </div>
+  );
 };
 
 export default Home;

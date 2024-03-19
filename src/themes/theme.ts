@@ -1,15 +1,13 @@
 const theme = {
   colors: {
-    // TODO: Pink color 확정 시 추가 필요
     pink: {
       logo: "#FF6B92",
-      100 : "#FFDDE5",
-      200 : "#FFB9CA",
-      300 : "#FF86A4",
-      400 : "#FF5781",
-      500 : "#FF2259",
-      600 : "#FF0040"
-    
+      100: "#FFDDE5",
+      200: "#FFB9CA",
+      300: "#FF86A4",
+      400: "#FF5781",
+      500: "#FF2259",
+      600: "#FF0040"
     },
     red: {
       200: "#FF9F9F",
