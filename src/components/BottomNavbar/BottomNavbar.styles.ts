@@ -19,6 +19,9 @@ export const BottomNavbarWrapper = styled.div`
   margin: 0 auto;
   user-select: none;
   z-index: 999;
+  max-width: 780px;
+  left: 50%;
+  transform: translateX(-50%);
 
   & .active {
     color: var(--black-000, #151515);
