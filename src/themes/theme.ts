@@ -100,6 +100,11 @@ const theme = {
       fontWeight: 400,
       lineHeight: "16.5px"
     }
+  },
+  shadow: {
+    dropshadow: {
+      boxShadow: "0px 0px 5px 3px rgba(0, 0, 0, 0.10)"
+    }
   }
 };
 
