@@ -5,7 +5,7 @@ import  PeopleIcon from "@assets/icons/ion_person.svg?react";
 import PrevIcon from "@assets/icons/ion_chevron-back.svg?react";
 import { useNavigate } from 'react-router-dom';
 
-const Header: React.FC<HeaderProps> = ({ type, width,text,height }) => {
+const Header: React.FC<HeaderProps> = ({ type,text }) => {
   const navigate = useNavigate();
   const handleClick = () => {
     
@@ -16,28 +16,30 @@ const Header: React.FC<HeaderProps> = ({ type, width,text,height }) => {
     navigate(-1);
   };
   return (
-    <S.StyledHeader width={width} height={height}>
-      
+    
+      <>
         {type === 'withLogo' && (
           <>
+        
             <S.HeaderWithLogo ><S.TitleText>기억해봄</S.TitleText> <button onClick={handleClick}><PeopleIcon></PeopleIcon></button></S.HeaderWithLogo>
+        
           </>
         )}
         {type === 'withPrevButton' && (
           <>
-            <S.HeaderWithPrev>
+            <S.HeaderWithMiddleText>
               <button onClick={goBack}><PrevIcon /></button>
                <span>{text}</span>
-          </S.HeaderWithPrev>
+          </S.HeaderWithMiddleText>
           </>
         )}
         {type === 'textOnly' && (
           <>
-            <S.HeaderOnlyText><span>{text}</span></S.HeaderOnlyText>
+            <S.HeaderWithMiddleText><span>{text}</span></S.HeaderWithMiddleText>
           </>
         )}
-     
-    </S.StyledHeader>
+     </>
+  
   );
 };
 

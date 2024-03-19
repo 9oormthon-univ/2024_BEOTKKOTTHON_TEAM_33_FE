@@ -1,6 +1,6 @@
 // Props 타입 정의
 export interface HeaderWrapperProps {
-  height? : string;
+ 
   width?: string;
  
 }
