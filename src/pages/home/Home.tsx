@@ -1,7 +1,7 @@
 import BaseButton from "@components/BaseButton/BaseButton";
 import { HomeContent, HomeTextBox } from "./Home.styles";
 import Haebom from "@assets/icons/7309697.svg?react";
-import { getRandomText } from "./Home.type";
+import { getRandomText } from "@utils/getHomeText";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
