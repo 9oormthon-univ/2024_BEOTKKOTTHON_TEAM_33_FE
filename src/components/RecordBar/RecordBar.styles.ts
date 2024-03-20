@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { RecordBarProps } from "./RecordBar.types";
 
 export const RecordBarWrapper = styled.div<RecordBarProps>`
-  width: 90%;
+  width: 100%;
   height: 51px;
   flex-shrink: 0;
 

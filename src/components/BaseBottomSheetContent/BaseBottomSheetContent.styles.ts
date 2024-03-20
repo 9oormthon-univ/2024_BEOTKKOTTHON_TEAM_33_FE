@@ -9,6 +9,8 @@ export const BaseBottomSheetContentWrapper = styled.div`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+
+  padding: 0 16px;
 `;
 
 export const MainTitle = styled.p`

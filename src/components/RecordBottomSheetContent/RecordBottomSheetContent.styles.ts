@@ -7,11 +7,12 @@ const TextLayout = css`
 `;
 
 export const BottomSectionWrapper = styled.div`
-  width: 90%;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 16px 12px;
+
+  padding: 0 18px;
 
   margin-top: 20px;
 `;
