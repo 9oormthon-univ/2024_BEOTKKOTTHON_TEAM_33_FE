@@ -30,6 +30,7 @@ const RecordBar = ({ barType }: RecordBarProps) => {
           <Lottie options={lottieOptions} height={40} width={75} />
         )}
       </S.LottieWrapper>
+      // TODO: 녹음 시간 표시
       <S.TimerText barType={barType}>00:00</S.TimerText>
     </S.RecordBarWrapper>
   );
