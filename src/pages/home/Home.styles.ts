@@ -9,7 +9,7 @@ const HomeContentWrapper = css`
 
 export const HomeContent = styled.div`
   ${HomeContentWrapper}
-  padding-top:68px;
+  padding-top:34px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,4 +20,5 @@ export const HomeTextBox = styled.div`
   font-style: ${({ theme }) => theme.text.heading4};
   color: var(--Color-Styles-black-000, #151515);
   text-align: center;
+  white-space: pre-line;
 `;
