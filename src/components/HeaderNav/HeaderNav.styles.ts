@@ -35,7 +35,6 @@ export const HeaderWithMiddleText = styled.div`
   }
 `;
 
-//TODO : svg로 바꾸기
 export const TitleText = styled.div`
   color: ${({ theme }) => theme.colors.pink.logo};
   font-family: "Cafe24 Ssurround";

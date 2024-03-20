@@ -9,6 +9,7 @@ import OnBoarding from "../pages/onBoarding/OnBoarding";
 import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
 import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
+import Header from "@components/HeaderNav/HeaderNav";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
         index: true,
         element: (
           <>
+            <Header type="withLogo" text="" />
             <Home />
             <BottomNavBar />
           </>
@@ -30,11 +32,20 @@ const router = createBrowserRouter([
       },
       {
         path: "/album",
-        element: <Album />
+        element: (
+          <>
+            <Header type="withPrevButton" text="최근 사진" />
+            <Album />
+          </>
+        )
       },
       {
         path: "/diaryDetail",
-        element: <DiaryDetail />
+        element: (
+          <>
+            <DiaryDetail />
+          </>
+        )
       },
       {
         path: "/onBoarding",
@@ -48,6 +59,7 @@ const router = createBrowserRouter([
         path: "/myCollection",
         element: (
           <>
+            <Header type="textOnly" text="나의 추억 기록함" />
             <MyCollection />
             <BottomNavBar />
           </>
@@ -61,6 +73,7 @@ const router = createBrowserRouter([
         path: "/otherCollection",
         element: (
           <>
+            <Header type="textOnly" text="공감일기" /> //TODO : 나중에 멘트 바뀌면 수정
             <OtherCollection />
             <BottomNavBar />
           </>
@@ -68,7 +81,12 @@ const router = createBrowserRouter([
       },
       {
         path: "/writeDiary",
-        element: <WriteDiary />
+        element: (
+          <>
+            <Header type="withPrevButton" text="해봄이" />
+            <WriteDiary />
+          </>
+        )
       }
     ]
   }
