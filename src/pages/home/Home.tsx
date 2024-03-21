@@ -4,7 +4,7 @@ import Haebom from "@assets/icons/7309697.svg?react";
 import { getRandomText } from "@utils/getHomeText";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+// test
 const Home = () => {
   const navigate = useNavigate();
   const handleClick = () => {
