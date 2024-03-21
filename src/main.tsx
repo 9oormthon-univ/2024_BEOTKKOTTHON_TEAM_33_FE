@@ -8,6 +8,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Global, ThemeProvider } from "@emotion/react";
 import globalStyles from "./styles/globalStyles";
 import theme from "themes/theme";
+import { Toaster } from "react-hot-toast";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,6 +24,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <ThemeProvider theme={theme}>
         <Global styles={globalStyles} />
         <RouterProvider router={router} />
+        <Toaster />
       </ThemeProvider>
     </RecoilRoot>
     <ReactQueryDevtools initialIsOpen={false} />
