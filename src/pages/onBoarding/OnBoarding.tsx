@@ -1,10 +1,14 @@
-import Header from "@components/HeaderNav/HeaderNav";
-
+import { OnBoradingWrapper } from "./OnBoarding.styles";
+import FlowerIcon from "@assets/icons/Group 986612.svg?react";
+import WhiteLogo from "@assets/icons/온보딩기억해봄.svg?react";
 const OnBoarding = () => {
   return (
-    <div>
-      <Header type="withPrevButton" text="나의 추억 기록함" />
-    </div>
+    <>
+      <OnBoradingWrapper>
+        <FlowerIcon />
+        <WhiteLogo />
+      </OnBoradingWrapper>
+    </>
   );
 };
 
