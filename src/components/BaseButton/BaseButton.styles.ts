@@ -39,4 +39,5 @@ export const WhiteButton = styled.button<BaseButtonStylesProps>`
   background: #fff;
   color: ${({ theme }) => theme.colors.gray[700]};
   ${({ theme }) => theme.text.body1_bold};
+  border: ${({ theme }) => theme.colors.gray[400]} 1px solid;
 `;
