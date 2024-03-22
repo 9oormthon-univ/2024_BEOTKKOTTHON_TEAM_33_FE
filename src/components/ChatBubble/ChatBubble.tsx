@@ -7,10 +7,7 @@ import { useEffect, useState } from "react";
 export const UserChatBubble = ({ text }: BubbleText) => {
   return (
     <>
-      <S.UserMessageWrapper>
-        {text}
-        {text.length === 0 ? <Lottie options={defaultOptions} /> : null}
-      </S.UserMessageWrapper>
+      <S.UserMessageWrapper>{text}</S.UserMessageWrapper>
     </>
   );
 };
