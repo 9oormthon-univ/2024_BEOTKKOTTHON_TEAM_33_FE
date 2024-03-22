@@ -6,7 +6,6 @@ const ButtonLayout = css`
   height: 60px;
   flex-shrink: 0;
   border-radius: 16px;
-  color: var(--white-000, #fff);
   text-align: center;
 `;
 
@@ -20,6 +19,7 @@ export const AbledButton = styled.button<BaseButtonStylesProps>`
 
   width: ${({ width }) => width || "288px"};
   background: ${({ theme }) => theme.colors.pink[400]};
+  color: var(--white-000, #fff);
   ${({ theme }) => theme.text.body1_bold};
 `;
 
@@ -28,5 +28,15 @@ export const DisabledButton = styled.button<BaseButtonStylesProps>`
 
   width: ${({ width }) => width || "288px"};
   background: ${({ theme }) => theme.colors.gray[300]};
+  color: var(--white-000, #fff);
+  ${({ theme }) => theme.text.body1_bold};
+`;
+
+export const WhiteButton = styled.button<BaseButtonStylesProps>`
+  ${ButtonLayout}
+
+  width: ${({ width }) => width || "288px"};
+  background: #fff;
+  color: ${({ theme }) => theme.colors.gray[700]};
   ${({ theme }) => theme.text.body1_bold};
 `;

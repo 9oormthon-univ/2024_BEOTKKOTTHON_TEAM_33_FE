@@ -7,6 +7,8 @@ const BaseButton = ({ buttonType, children, ...props }: BaseButtonProps) => {
       return <S.AbledButton {...props}>{children}</S.AbledButton>;
     case "disabled":
       return <S.DisabledButton {...props}>{children}</S.DisabledButton>;
+    case "white":
+      return <S.WhiteButton {...props}>{children}</S.WhiteButton>;
 
     default:
       return null;
