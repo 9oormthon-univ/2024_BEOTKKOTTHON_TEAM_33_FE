@@ -30,6 +30,7 @@ const DiaryDetail = () => {
           32px입니당!
         </S.Content>
       </S.MainSectionWrapper>
+
       <S.ButtonWrapper>
         <BaseButton buttonType="white" width="50%">
           다시 만들기
