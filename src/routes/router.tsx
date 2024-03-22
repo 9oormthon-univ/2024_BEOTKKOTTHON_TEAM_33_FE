@@ -73,7 +73,7 @@ const router = createBrowserRouter([
         path: "/otherCollection",
         element: (
           <>
-            <Header type="textOnly" text="공감일기" /> //TODO : 나중에 멘트 바뀌면 수정
+            <Header type="textOnly" text="함께보기" />
             <OtherCollection />
             <BottomNavBar />
           </>
