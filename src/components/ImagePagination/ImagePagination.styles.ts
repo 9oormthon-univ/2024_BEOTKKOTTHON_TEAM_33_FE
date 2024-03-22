@@ -13,3 +13,19 @@ export const LoginText = styled.div`
   font-style: ${({ theme }) => theme.text.heading4};
   text-align: center;
 `;
+
+export const DiaryWrapper = styled.div`
+  display: flex;
+  align-self: center;
+  width: 288px;
+  height: 288px;
+  margin-bottom: 16px;
+  flex-direction: column;
+`;
+
+export const DotContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-self: center;
+  margin-top: -16px;
+`;
