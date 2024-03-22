@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 export const DiaryDetailWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   padding: 8px 16px 32px 16px;
 
