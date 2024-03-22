@@ -9,3 +9,8 @@ export const ChatWrapper = styled.div`
   overflow-y: auto;
   max-height: 100vh;
 `;
+
+export const BaseSheetWrapper = styled.div`
+  background: var(--Color-Styles-bg-500, rgba(21, 21, 21, 0.3));
+  z-index: 0;
+`;
