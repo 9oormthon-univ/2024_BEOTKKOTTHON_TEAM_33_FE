@@ -29,6 +29,8 @@ export const AlbumContainer = styled.div`
 
   padding-bottom: 120px;
   background-color: #fff;
+
+  overflow-y: auto;
 `;
 
 export const PhotoWrapper = styled.div`
@@ -75,9 +77,13 @@ export const SelectedBadge = styled.div`
 
 export const BaseButtonWrapper = styled.div<BaseButtonWrapperProps>`
   position: fixed;
-  bottom: 56px;
+  bottom: 0;
   left: 50%;
+  height: 130px;
   transform: translateX(-50%);
   width: ${({ width }) => width};
-  padding: 0 16px;
+  padding: 14px 16px;
+
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 26%);
+  z-index: 3;
 `;
