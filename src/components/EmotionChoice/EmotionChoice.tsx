@@ -1,10 +1,20 @@
 import * as S from "./EmotionChoice.styles";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UserChatBubble } from "@components/ChatBubble/ChatBubble";
+import useCreateDiary from "@hooks/useCreateDiary";
+import { diaryState } from "@stores/diaryStore";
+import { useRecoilState } from "recoil";
+import ContentProps from "@/types/contentProps";
+
 const EmotionChoice = () => {
+  const { mutate: createDiary } = useCreateDiary();
+
+  const [diary, setDiary] = useRecoilState(diaryState);
+
   const [isPressed, setIsPressed] = useState<string | null>(null);
   const [emotionText, setEmotionText] = useState("");
   const [isChatVisible, setIsChatVisible] = useState(false);
+
   // 터치 이벤트 핸들러
   const handleTouchStart = (text: string) => {
     setIsPressed(text); // 버튼이 터치되었음을 설정
@@ -34,9 +44,18 @@ const EmotionChoice = () => {
     }
     setEmotionText(chatText);
     setIsChatVisible(true);
+
+    setTimeout(() => {
+      setDiary({ ...diary, emotion: emotion });
+    }, 2000);
   };
   const emotions = ["기쁨", "슬픔"];
   const emotions2 = ["분노", "두려움", "놀라움"];
+
+  useEffect(() => {
+    if (diary.emotion === "") return;
+    createDiary(diary as ContentProps);
+  }, [diary]);
   return (
     <>
       <S.EmotionWrapper>

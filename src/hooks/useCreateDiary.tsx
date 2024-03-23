@@ -18,7 +18,7 @@ const useUpload = () => {
     onError: (error: AxiosError) => {
       console.log(error);
 
-      toast.error("일기 업로드에 실패했습니다. 다시 시도해주세요.");
+      toast.error("일기 업로드에 실패했습니다.\n다시 시도해주세요.");
     }
   });
 };

@@ -139,7 +139,7 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
           <S.DoneText
             onClick={() => {
               setIsVisible(false);
-              setDiary({ ...diary, voiceText: transcript });
+              setDiary({ ...diary, diaryType: "사진일기", voiceText: transcript });
             }}
           >
             완료
