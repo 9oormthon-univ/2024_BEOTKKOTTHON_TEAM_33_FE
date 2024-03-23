@@ -67,7 +67,7 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
               width: width ? width : "288px",
               height: height ? height : "288px",
               borderRadius: "20px",
-              overflow: "hidden"
+              overflow: "auto"
             }}
           />
           <S.DotContainer>
@@ -75,6 +75,7 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
               <Dot key={index} active={index === currentIndex} />
             ))}
           </S.DotContainer>
+          {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
         </S.DiaryWrapper>
       )}
     </>

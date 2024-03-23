@@ -4,6 +4,7 @@ import { UserChatBubble, BotChatBubble } from "@components/ChatBubble/ChatBubble
 import BaseBottomSheetContent from "@components/BaseBottomSheetContent/BaseBottomSheetContent";
 import BottomSheet from "@components/BottomSheet/BottomSheet";
 import ImagePagination from "@components/ImagePagination/ImagePagination";
+import RecordBottomSheetContent from "@components/RecordBottomSheetContent/RecordBottomSheetContent";
 
 const WriteDiary = () => {
   const images = [
@@ -13,8 +14,20 @@ const WriteDiary = () => {
     "../src/assets/icons/Sending Receiving Texts Messages.jpg"
   ];
   const [isVisible, setIsVisible] = useState(false);
+  const [isRecording, setIsRecording] = useState(false);
   const [isImageVisible, setIsImageVisible] = useState(true); //나중에 이부분 false로 바꾸고 api받았을때 true로 해서 쓰면됨
   const chatListRef = useRef<HTMLDivElement>(null);
+  const [isPressed, setIsPressed] = useState(false);
+
+  // 터치 이벤트 핸들러
+  const handleTouchStart = () => {
+    setIsPressed(true); // 버튼이 터치되었음을 설정
+  };
+
+  const handleTouchEnd = () => {
+    setIsPressed(false); // 버튼이 터치 해제됨을 설정
+  };
+
   useEffect(() => {
     setIsImageVisible(true); //나중에 삭제
     chatListRef.current?.scrollTo(0, chatListRef.current.scrollHeight);
@@ -24,14 +37,33 @@ const WriteDiary = () => {
 
     return () => clearTimeout(timer);
   }, []);
-
+  const handleStartRecord = () => {
+    setIsRecording(true);
+    console.log(isRecording);
+  };
   return (
     <S.ChatWrapper ref={chatListRef}>
       <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
       <BottomSheet isVisible={isVisible} setIsVisible={setIsVisible}>
         <BaseBottomSheetContent />
       </BottomSheet>
-      {isImageVisible === true ? <ImagePagination images={images} isLogin={false} /> : null}
+      {isImageVisible === true ? (
+        <S.PaginationWrapper>
+          <ImagePagination images={images} isLogin={false} />
+          <S.TalkStartButton
+            onClick={handleStartRecord}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            isPressed={isPressed}
+          >
+            추억 얘기하기
+          </S.TalkStartButton>
+        </S.PaginationWrapper>
+      ) : null}
+      <BottomSheet isVisible={isRecording} setIsVisible={setIsRecording}>
+        <RecordBottomSheetContent setIsVisible={setIsRecording} />
+      </BottomSheet>
+
       <UserChatBubble text="임포트문때문에 넣어둠" />
       <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
       <UserChatBubble text="임포트문때문에 넣어둠" />

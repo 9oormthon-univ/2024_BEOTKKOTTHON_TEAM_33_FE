@@ -33,11 +33,11 @@ const ModalContent = styled.div`
   padding: 20px;
 `;
 
-const CloseButton = styled.button`
-  position: absolute;
-  top: 10px;
-  right: 10px;
-`;
+// const CloseButton = styled.button`
+//   position: absolute;
+//   top: 10px;
+//   right: 10px;
+// `;
 
 const MonthSelectionTitle = styled.div`
   font-style: ${({ theme }) => theme.text.body1_bold};
@@ -75,7 +75,7 @@ const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
       <ModalOverlay isOpen={isOpen} onClick={onClose} />
       <ModalContainer isOpen={isOpen}>
         <ModalContent>
-          <CloseButton onClick={onClose}>Close</CloseButton>
+          {/* <CloseButton onClick={onClose}>Close</CloseButton> */}
           <MonthSelectionTitle>달 선택하기</MonthSelectionTitle>
           <MonthItem
             isSelected={selectedMonth === "2024년 4월"}
