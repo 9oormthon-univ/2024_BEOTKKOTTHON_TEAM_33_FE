@@ -15,14 +15,12 @@ import useReCreateDiary from "@hooks/useReCreateDiary";
 import { diaryState } from "@stores/diaryStore";
 import { useRecoilState } from "recoil";
 import Header from "@components/HeaderNav/HeaderNav";
-import { useNavigate } from "react-router-dom";
 import Spinner from "@components/Spinner/Spinner";
 
 const DiaryDetail = () => {
   const [searchParams] = useSearchParams();
   const from = searchParams.get("from");
 
-  const navigate = useNavigate();
   const [diary] = useRecoilState(diaryState);
 
   const { mutate: reCreateDiary, isSuccess } = useReCreateDiary();
