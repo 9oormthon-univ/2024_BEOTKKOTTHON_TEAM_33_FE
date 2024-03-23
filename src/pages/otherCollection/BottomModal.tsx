@@ -1,4 +1,6 @@
 import styled from "@emotion/styled";
+import { useState } from "react";
+import CheckIcon from "@assets/icons/ion_checkmark.svg?react";
 
 interface BottomModalProps {
   isOpen: boolean;
@@ -43,19 +45,28 @@ const MonthSelectionTitle = styled.div`
   height: 20%;
 `;
 
-const MonthItem = styled.div`
+const MonthItem = styled.div<{ isSelected: boolean }>`
   margin-top: 10px;
   width: 100%;
   height: 25px;
   /* background-color: aliceblue; */
-  font-style: ${({ theme }) => theme.text.body2_reg};
-  color: ${({ theme }) => theme.colors.gray[600]};
+  font-style: ${({ theme, isSelected }) =>
+    isSelected ? theme.text.body2_bold : theme.text.body2_reg};
+  color: ${({ theme, isSelected }) =>
+    isSelected ? theme.colors.pink[500] : theme.colors.gray[600]};
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
+  const [selectedMonth, setSelectedMonth] = useState<string>("2024년 3월");
+
   const handleMonthSelect = (month: string) => {
-    // 선택한 달에 대한 동작을 수행할 수 있음
     console.log("Selected month:", month);
+    setSelectedMonth(month);
     onClose(); // 모달 닫기
   };
 
@@ -66,10 +77,34 @@ const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
         <ModalContent>
           <CloseButton onClick={onClose}>Close</CloseButton>
           <MonthSelectionTitle>달 선택하기</MonthSelectionTitle>
-          <MonthItem onClick={() => handleMonthSelect("2024년 4월")}>2024년 4월</MonthItem>
-          <MonthItem onClick={() => handleMonthSelect("2024년 3월")}>2024년 3월</MonthItem>
-          <MonthItem onClick={() => handleMonthSelect("2024년 2월")}>2024년 2월</MonthItem>
-          <MonthItem onClick={() => handleMonthSelect("2024년 1월")}>2024년 1월</MonthItem>
+          <MonthItem
+            isSelected={selectedMonth === "2024년 4월"}
+            onClick={() => handleMonthSelect("2024년 4월")}
+          >
+            2024년 4월
+            {selectedMonth === "2024년 4월" ? <CheckIcon /> : null}
+          </MonthItem>
+          <MonthItem
+            isSelected={selectedMonth === "2024년 3월"}
+            onClick={() => handleMonthSelect("2024년 3월")}
+          >
+            2024년 3월
+            {selectedMonth === "2024년 3월" ? <CheckIcon /> : null}
+          </MonthItem>
+          <MonthItem
+            isSelected={selectedMonth === "2024년 2월"}
+            onClick={() => handleMonthSelect("2024년 2월")}
+          >
+            2024년 2월
+            {selectedMonth === "2024년 2월" ? <CheckIcon /> : null}
+          </MonthItem>
+          <MonthItem
+            isSelected={selectedMonth === "2024년 1월"}
+            onClick={() => handleMonthSelect("2024년 1월")}
+          >
+            2024년 1월
+            {selectedMonth === "2024년 1월" ? <CheckIcon /> : null}
+          </MonthItem>
         </ModalContent>
       </ModalContainer>
     </>
