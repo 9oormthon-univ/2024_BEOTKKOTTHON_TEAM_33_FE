@@ -90,7 +90,11 @@ const EmotionChoice = () => {
           isVisible={isSuccess}
           setIsVisible={setIsLoading}
         >
-          <BaseButton buttonType="abled" width="100%" onClick={() => navigate("/diaryDetail")}>
+          <BaseButton
+            buttonType="abled"
+            width="100%"
+            onClick={() => navigate("/diaryDetail?from=writeDiary")}
+          >
             일기 확인하기
           </BaseButton>
         </Modal>

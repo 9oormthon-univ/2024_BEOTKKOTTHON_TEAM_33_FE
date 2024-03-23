@@ -9,6 +9,8 @@ import Modal from "@components/Modal/Modal";
 import VoiceButtonIcon from "@assets/icons/voiceButtonIcon.svg?react";
 import LikeButtonAbled from "@assets/icons/likeButton_abled.svg?react";
 import LikeButtonDisabled from "@assets/icons/likeButton_disabled.svg?react";
+import formatDate from "@utils/formatDate";
+import { ImagesType } from "./DiaryDetail.types";
 
 const DiaryDetail = () => {
   const [searchParams] = useSearchParams();
@@ -25,12 +27,9 @@ const DiaryDetail = () => {
     isCancelTextExist: true
   };
 
-  const images = [
-    "../src/assets/icons/diaryImageTest1.jpg",
-    "../src/assets/icons/diaryImageTest2.jpg",
-    "../src/assets/icons/Users Network.jpg",
-    "../src/assets/icons/Sending Receiving Texts Messages.jpg"
-  ];
+  const diaryData = JSON.parse(localStorage.getItem("diary") || "{}");
+
+  const images = diaryData.images.map((image: ImagesType) => image.convertImageUrl);
 
   return (
     <S.TogetherWrapper>
@@ -38,8 +37,8 @@ const DiaryDetail = () => {
       <S.MainSectionWrapper>
         <S.ContentTitleWrapper>
           <S.TitleWrapper>
-            <S.NameText>작성자 이름</S.NameText>
-            <S.DateText>0000년 00월 00일</S.DateText>
+            <S.NameText>{diaryData.title}</S.NameText>
+            <S.DateText>{formatDate(new Date())}</S.DateText>
           </S.TitleWrapper>
           {from === "myCollection" && (
             <S.VoiceButton>
@@ -49,21 +48,12 @@ const DiaryDetail = () => {
           )}
         </S.ContentTitleWrapper>
 
-        <S.Content>
-          봄을 맞아 남편과 아이들 데리고 동네에 꽃놀이를 나갔다. 요새 날이 많이 따뜻해져서 3월이지만
-          벚꽃을 만날 수 있었다. 지구 온난화는 슬프지만 벚꽃을 조금 더 일찍 볼 수 있다는 건 즐거운
-          일이야~ 봄을 맞아 남편과 아이들 데리고 동네에 꽃놀이를 나갔다. 요새 날이 많이 따뜻해져서
-          3월이지만 벚꽃을 만날 수 있었다. 지구 온난화는 슬프지만 벚꽃을 조금 더 일찍 볼 수 있다는
-          건 즐거운 일이야~ 봄을 맞아 남편과 아이들 데리고 동네에 꽃놀이를 나갔다. 요새 날이 많이
-          따뜻해져서 3월이지만 벚꽃을 만날 수 있었다. 지구 온난화는 슬프지만 벚꽃을 조금 더 일찍 볼
-          수 있다는 건 즐거운 일이야~
-        </S.Content>
+        <S.Content>{diaryData.content}</S.Content>
         <S.NameText>핵심 단어</S.NameText>
         <S.TagWrapper>
-          <Tag>#행복</Tag>
-          <Tag>#즐거움</Tag>
-          <Tag>#봄</Tag>
-          <Tag>#꽃구경</Tag>
+          {diaryData.hashtags.map((tag: string, index: number) => (
+            <Tag key={index}>{tag}</Tag>
+          ))}
         </S.TagWrapper>
       </S.MainSectionWrapper>
       {from === "writeDiary" && (

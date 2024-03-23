@@ -59,24 +59,26 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
           ) : null}
         </S.LoginWrapper>
       ) : (
-        <S.DiaryWrapper {...handlers}>
-          <img
-            src={images[currentIndex]}
-            style={{
-              objectFit: "cover",
-              width: width ? width : "288px",
-              height: height ? height : "288px",
-              borderRadius: "20px",
-              overflow: "auto"
-            }}
-          />
-          <S.DotContainer>
-            {images.map((_, index) => (
-              <Dot key={index} active={index === currentIndex} />
-            ))}
-          </S.DotContainer>
-          {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
-        </S.DiaryWrapper>
+        Array.isArray(images) && (
+          <S.DiaryWrapper {...handlers}>
+            <img
+              src={images[currentIndex]}
+              style={{
+                objectFit: "cover",
+                width: width ? width : "288px",
+                height: height ? height : "288px",
+                borderRadius: "20px",
+                overflow: "auto"
+              }}
+            />
+            <S.DotContainer>
+              {images.map((_, index) => (
+                <Dot key={index} active={index === currentIndex} />
+              ))}
+            </S.DotContainer>
+            {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
+          </S.DiaryWrapper>
+        )
       )}
     </>
   );

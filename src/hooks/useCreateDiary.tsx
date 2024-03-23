@@ -10,8 +10,9 @@ const useUpload = () => {
 
   return useMutation({
     mutationFn: (content: ContentProps) => postDiary(content),
-    onSuccess: () => {
+    onSuccess: (res: any) => {
       console.log("Success");
+      localStorage.setItem("diary", JSON.stringify(res.data));
 
       navigate("/writeDiary");
     },
