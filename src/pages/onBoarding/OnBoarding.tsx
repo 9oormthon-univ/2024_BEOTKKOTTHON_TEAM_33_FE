@@ -1,5 +1,5 @@
 import { OnBoradingWrapper } from "./OnBoarding.styles";
-import FlowerIcon from "@assets/icons/Group 986612.svg?react";
+import FlowerIcon from "@assets/icons/OnBoardLogo.svg";
 import WhiteLogo from "@assets/icons/온보딩기억해봄.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";

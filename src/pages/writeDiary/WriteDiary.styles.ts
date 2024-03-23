@@ -8,6 +8,7 @@ export const ChatWrapper = styled.div`
   padding-right: 16px;
   overflow-y: auto;
   max-height: 100vh;
+  padding-top: 20px;
 `;
 
 export const BaseSheetWrapper = styled.div`
@@ -35,6 +36,5 @@ export const TalkStartButton = styled.div<{ isPressed: boolean }>`
   /* background: #fafafa; */
   font-style: ${({ theme }) => theme.text.detail1_reg};
   color: ${({ isPressed }) => (isPressed ? "white" : "#5C5E62")};
-  background-color: ${({ isPressed }) =>
-    isPressed ? "#FF5781" : "white"}; /* 터치 중이면 빨간색, 그렇지 않으면 녹색 */
+  background-color: ${({ isPressed }) => (isPressed ? "#FF5781" : "white")};
 `;
