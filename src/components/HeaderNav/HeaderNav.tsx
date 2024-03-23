@@ -4,14 +4,20 @@ import PeopleIcon from "@assets/icons/ion_person.svg?react";
 import PrevIcon from "@assets/icons/ion_chevron-back.svg?react";
 import LogoIcon from "@assets/icons/기억해봄.svg?react";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import LogOutModal from "@components/LogOutModal/LogOutModal";
 
 const Header = ({ type, text }: HeaderProps) => {
   const navigate = useNavigate();
+  const [isLogOut, setIsLogOut] = useState(false);
   const handleClick = () => {
-    navigate("/myPage");
+    setIsLogOut(true);
   };
   const goBack = () => {
     navigate(-1);
+  };
+  const handleLogoutClose = () => {
+    setIsLogOut(false);
   };
   return (
     <>
@@ -25,6 +31,7 @@ const Header = ({ type, text }: HeaderProps) => {
               <PeopleIcon />
             </button>
           </S.HeaderWithLogo>
+          {isLogOut && <LogOutModal isOpen={isLogOut} onClose={handleLogoutClose} />}
         </>
       )}
       {type === "withPrevButton" && (

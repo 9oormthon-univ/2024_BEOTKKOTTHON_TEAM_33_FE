@@ -6,16 +6,7 @@ import { useEffect, useState } from "react";
 import ChatLoad from "@assets/lotties/chatLoading.json";
 
 export const UserChatBubble = ({ text }: BubbleText) => {
-  return (
-    <>
-      <S.UserMessageWrapper>{text}</S.UserMessageWrapper>
-    </>
-  );
-};
-
-export const BotChatBubble = ({ text }: BubbleText) => {
   const defaultOptions = {
-    //예제1
     loop: true,
     autoplay: true,
     animationData: ChatLoad,
@@ -27,7 +18,38 @@ export const BotChatBubble = ({ text }: BubbleText) => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
-    }, 1500);
+    }, 1000);
+
+    return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머정리
+  }, []);
+
+  return (
+    <>
+      {isLoading === true ? (
+        <S.UserMessageWrapper>
+          <Lottie options={defaultOptions} />
+        </S.UserMessageWrapper>
+      ) : (
+        <S.UserMessageWrapper>{text}</S.UserMessageWrapper>
+      )}
+    </>
+  );
+};
+
+export const BotChatBubble = ({ text }: BubbleText) => {
+  const defaultOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: ChatLoad,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice"
+    }
+  };
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
 
     return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머정리
   }, []);
