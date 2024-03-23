@@ -7,7 +7,7 @@ import Dot2 from "@assets/icons/dot2.svg?react";
 import Dot3 from "@assets/icons/dot3.svg?react";
 import Dot from "./Dot";
 
-const ImagePagination = ({ images, isLogin }: ImagePaginationProps) => {
+const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProps) => {
   const [currentIndex, setCurrentIndex] = React.useState(0);
   const handlers = useSwipeable({
     onSwipedLeft: () => {
@@ -64,10 +64,10 @@ const ImagePagination = ({ images, isLogin }: ImagePaginationProps) => {
             src={images[currentIndex]}
             style={{
               objectFit: "cover",
-              width: "288px",
-              height: "288px",
+              width: width ? width : "288px",
+              height: height ? height : "288px",
               borderRadius: "20px",
-              overflow: "hidden"
+              overflow: "auto"
             }}
           />
           <S.DotContainer>
@@ -75,6 +75,7 @@ const ImagePagination = ({ images, isLogin }: ImagePaginationProps) => {
               <Dot key={index} active={index === currentIndex} />
             ))}
           </S.DotContainer>
+          {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
         </S.DiaryWrapper>
       )}
     </>
