@@ -38,47 +38,54 @@ const WriteDiary = () => {
 
     return () => clearTimeout(timer);
   }, []);
+  useEffect(() => {
+    chatListRef.current?.scrollTo(0, chatListRef.current.scrollHeight);
+  }, [isRecording]);
   const handleStartRecord = () => {
     setIsRecording(true);
     console.log(isRecording);
   };
   return (
-    <S.ChatWrapper ref={chatListRef}>
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <BottomSheet isVisible={isVisible} setIsVisible={setIsVisible}>
-        <BaseBottomSheetContent />
-      </BottomSheet>
-      {isImageVisible === true ? (
-        <S.PaginationWrapper>
-          <ImagePagination images={images} isLogin={false} />
-          <S.TalkStartButton
-            onClick={handleStartRecord}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-            isPressed={isPressed}
-          >
-            추억 얘기하기
-          </S.TalkStartButton>
-        </S.PaginationWrapper>
-      ) : null}
+    <>
+      <S.ChatWrapper ref={chatListRef} isRecording={isRecording}>
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <BottomSheet isVisible={isVisible} setIsVisible={setIsVisible}>
+          <BaseBottomSheetContent />
+        </BottomSheet>
+        {isImageVisible === true ? (
+          <S.PaginationWrapper>
+            <ImagePagination images={images} isLogin={false} />
+            <S.TalkStartButton
+              onClick={handleStartRecord}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+              isPressed={isPressed}
+            >
+              추억 얘기하기
+            </S.TalkStartButton>
+          </S.PaginationWrapper>
+        ) : null}
+
+        <EmotionChoice />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+        <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
+        <UserChatBubble text="임포트문때문에 넣어둠" />
+      </S.ChatWrapper>
+      {isRecording && <div style={{ height: "900px" }}></div>}
       <BottomSheet isVisible={isRecording} setIsVisible={setIsRecording}>
         <RecordBottomSheetContent setIsVisible={setIsRecording} />
       </BottomSheet>
-      <EmotionChoice />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-      <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
-      <UserChatBubble text="임포트문때문에 넣어둠" />
-    </S.ChatWrapper>
+    </>
   );
 };
 
