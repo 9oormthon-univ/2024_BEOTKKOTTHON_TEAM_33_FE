@@ -43,7 +43,6 @@ const router = createBrowserRouter([
         path: "/diaryDetail",
         element: (
           <>
-            <Header type="textOnly" text="아무튼 생성된 제목" />
             <DiaryDetail />
           </>
         )

@@ -9,6 +9,8 @@ import { Global, ThemeProvider } from "@emotion/react";
 import globalStyles from "./styles/globalStyles";
 import theme from "themes/theme";
 import { Toaster } from "react-hot-toast";
+import { Suspense } from "react";
+import Spinner from "components/Spinner/Spinner";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,9 +24,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   <QueryClientProvider client={queryClient}>
     <RecoilRoot>
       <ThemeProvider theme={theme}>
-        <Global styles={globalStyles} />
-        <RouterProvider router={router} />
-        <Toaster />
+        <Suspense fallback={<Spinner />}>
+          <Global styles={globalStyles} />
+          <RouterProvider router={router} />
+          <Toaster />
+        </Suspense>
       </ThemeProvider>
     </RecoilRoot>
     <ReactQueryDevtools initialIsOpen={false} />

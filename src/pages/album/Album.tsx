@@ -1,12 +1,15 @@
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { Photo } from "./Album.types";
 import * as S from "./Album.styles";
 import useImages from "@hooks/useImages";
 import { toast } from "react-hot-toast";
 import BaseButton from "@components/BaseButton/BaseButton";
+import useUpload from "@hooks/useUpload";
+import Spinner from "@components/Spinner/Spinner";
 
 const Album = () => {
   const { data: photos } = useImages();
+  const { mutate: photoMutate } = useUpload();
 
   const [selectedPhotos, setSelectedPhotos] = useState<Photo[]>([]);
 
@@ -32,10 +35,13 @@ const Album = () => {
     return isSelected(photo) ? index + 1 : null;
   };
 
+  const handlePhotoSelect = () => {
+    photoMutate(selectedPhotos.map((photo) => photo.download_url));
+  };
+
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       <S.AlbumContainer>
-        {/* TODO: response 객체의 type으로 수정 */}
         {photos.map((photo: any) => (
           <S.PhotoWrapper key={photo.id}>
             <S.Image
@@ -55,12 +61,11 @@ const Album = () => {
         ))}
       </S.AlbumContainer>
       <S.BaseButtonWrapper width="100%">
-        {/* TODO: 이동 로직 추가 */}
-        <BaseButton buttonType="abled" width="100%">
+        <BaseButton buttonType="abled" width="100%" onClick={() => handlePhotoSelect()}>
           이 사진으로 할래요
         </BaseButton>
       </S.BaseButtonWrapper>
-    </>
+    </Suspense>
   );
 };
 

@@ -25,7 +25,7 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
   return (
     <>
       {/* 로그인시엔 dot1과 문구, 아니면 개별dots(일기생성) 렌더링하게 */}
-      {isLogin === true ? (
+      {isLogin === true && Array.isArray(images) ? (
         <S.LoginWrapper {...handlers}>
           <img src={images[currentIndex]} />
           {currentIndex == 0 ? (
@@ -59,24 +59,26 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
           ) : null}
         </S.LoginWrapper>
       ) : (
-        <S.DiaryWrapper {...handlers}>
-          <img
-            src={images[currentIndex]}
-            style={{
-              objectFit: "cover",
-              width: width ? width : "288px",
-              height: height ? height : "288px",
-              borderRadius: "20px",
-              overflow: "auto"
-            }}
-          />
-          <S.DotContainer>
-            {images.map((_, index) => (
-              <Dot key={index} active={index === currentIndex} />
-            ))}
-          </S.DotContainer>
-          {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
-        </S.DiaryWrapper>
+        Array.isArray(images) && (
+          <S.DiaryWrapper {...handlers}>
+            <img
+              src={images[currentIndex]}
+              style={{
+                objectFit: "cover",
+                width: width ? width : "288px",
+                height: height ? height : "288px",
+                borderRadius: "20px",
+                overflow: "auto"
+              }}
+            />
+            <S.DotContainer>
+              {images.map((_, index) => (
+                <Dot key={index} active={index === currentIndex} />
+              ))}
+            </S.DotContainer>
+            {/* <S.TalkStartButton>추억 얘기하기</S.TalkStartButton> */}
+          </S.DiaryWrapper>
+        )
       )}
     </>
   );
