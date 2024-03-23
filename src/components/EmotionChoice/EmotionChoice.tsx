@@ -5,15 +5,22 @@ import useCreateDiary from "@hooks/useCreateDiary";
 import { diaryState } from "@stores/diaryStore";
 import { useRecoilState } from "recoil";
 import ContentProps from "@/types/contentProps";
+import Modal from "@components/Modal/Modal";
+import Spinner from "@components/Spinner/Spinner";
+import BaseButton from "@components/BaseButton/BaseButton";
+import { useNavigate } from "react-router-dom";
 
 const EmotionChoice = () => {
-  const { mutate: createDiary } = useCreateDiary();
+  const navigate = useNavigate();
+
+  const { mutate: createDiary, isSuccess } = useCreateDiary();
 
   const [diary, setDiary] = useRecoilState(diaryState);
 
   const [isPressed, setIsPressed] = useState<string | null>(null);
   const [emotionText, setEmotionText] = useState("");
   const [isChatVisible, setIsChatVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // 터치 이벤트 핸들러
   const handleTouchStart = (text: string) => {
@@ -54,10 +61,41 @@ const EmotionChoice = () => {
 
   useEffect(() => {
     if (diary.emotion === "") return;
+    setIsLoading(true);
     createDiary(diary as ContentProps);
   }, [diary]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      setIsLoading(false);
+    }
+  }, [isSuccess]);
+
   return (
     <>
+      {isLoading ? (
+        <Modal
+          title="추억 일기를
+        만들고 있어요"
+          content="30초정도 걸리니 조금만 기다려주세요!"
+          isVisible={isLoading}
+          setIsVisible={setIsLoading}
+        >
+          <Spinner />
+        </Modal>
+      ) : (
+        <Modal
+          title="추억일기가
+          완성되었어요!"
+          isVisible={isSuccess}
+          setIsVisible={setIsLoading}
+        >
+          <BaseButton buttonType="abled" width="100%" onClick={() => navigate("/diaryDetail")}>
+            일기 확인하기
+          </BaseButton>
+        </Modal>
+      )}
+
       <S.EmotionWrapper>
         <S.InnerWrapper>
           {emotions.map((emotion, index) => (

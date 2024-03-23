@@ -4,5 +4,5 @@ export interface ModalProp extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   content?: string;
   isCancelTextExist?: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
