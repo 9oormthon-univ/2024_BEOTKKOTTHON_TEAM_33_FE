@@ -19,7 +19,9 @@ export const ChatBubbleWrapper = css`
   align-items: center;
   margin-bottom: 10px;
   max-width: 230px;
+  width: auto;
   word-wrap: break-word;
+  white-space: pre-line;
 `;
 
 //내말풍선

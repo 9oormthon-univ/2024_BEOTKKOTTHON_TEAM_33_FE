@@ -36,7 +36,7 @@ export const UserChatBubble = ({ text }: BubbleText) => {
   );
 };
 
-export const BotChatBubble = ({ text }: BubbleText) => {
+export const BotChatBubble = ({ text, num }: BubbleText) => {
   const defaultOptions = {
     loop: true,
     autoplay: true,
@@ -46,13 +46,25 @@ export const BotChatBubble = ({ text }: BubbleText) => {
     }
   };
   const [isLoading, setIsLoading] = useState(true);
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
 
-    return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머정리
-  }, []);
+  if (num === 2) {
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 2000);
+
+      return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머정리
+    }, []);
+  } else {
+    useEffect(() => {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
+
+      return () => clearTimeout(timer); // 컴포넌트가 unmount될 때 타이머정리
+    }, []);
+  }
+
   return (
     <>
       <S.BotOuterWrapper>
