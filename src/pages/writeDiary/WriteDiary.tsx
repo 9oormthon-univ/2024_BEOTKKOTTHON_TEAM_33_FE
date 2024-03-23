@@ -5,7 +5,7 @@ import BaseBottomSheetContent from "@components/BaseBottomSheetContent/BaseBotto
 import BottomSheet from "@components/BottomSheet/BottomSheet";
 import ImagePagination from "@components/ImagePagination/ImagePagination";
 import RecordBottomSheetContent from "@components/RecordBottomSheetContent/RecordBottomSheetContent";
-
+import EmotionChoice from "@components/EmotionChoice/EmotionChoice";
 const WriteDiary = () => {
   const images = [
     "../src/assets/icons/diaryImageTest1.jpg",
@@ -18,6 +18,7 @@ const WriteDiary = () => {
   const [isImageVisible, setIsImageVisible] = useState(true); //나중에 이부분 false로 바꾸고 api받았을때 true로 해서 쓰면됨
   const chatListRef = useRef<HTMLDivElement>(null);
   const [isPressed, setIsPressed] = useState(false);
+  const [isEmotionVisible, setIsEmotionVisible] = useState(true); //나중에 false로 바꾸고 필요할때 set으로 쓰면됨
 
   // 터치 이벤트 핸들러
   const handleTouchStart = () => {
@@ -63,7 +64,7 @@ const WriteDiary = () => {
       <BottomSheet isVisible={isRecording} setIsVisible={setIsRecording}>
         <RecordBottomSheetContent setIsVisible={setIsRecording} />
       </BottomSheet>
-
+      {isEmotionVisible && <EmotionChoice />}
       <UserChatBubble text="임포트문때문에 넣어둠" />
       <BotChatBubble text="안녕하세요! 제게 이야기를 들려주시면 멋지게 정리해 드릴게요!" />
       <UserChatBubble text="임포트문때문에 넣어둠" />
