@@ -17,8 +17,9 @@ const EmotionChoice = () => {
     <>
       <S.EmotionWrapper>
         <S.InnerWrapper>
-          {emotions.map((emotion, _) => (
+          {emotions.map((emotion, index) => (
             <S.EmotionButton
+              key={index}
               onTouchStart={() => handleTouchStart(emotion)}
               onTouchEnd={handleTouchEnd}
               active={isPressed === emotion}
@@ -30,8 +31,9 @@ const EmotionChoice = () => {
         </S.InnerWrapper>
 
         <S.InnerWrapper>
-          {emotions2.map((emotion, _) => (
+          {emotions2.map((emotion, index) => (
             <S.EmotionButton
+              key={index}
               onTouchStart={() => handleTouchStart(emotion)}
               onTouchEnd={handleTouchEnd}
               active={isPressed === emotion}
