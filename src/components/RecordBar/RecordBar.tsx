@@ -5,10 +5,10 @@ import Lottie from "react-lottie";
 import BeforePlaying from "@assets/lotties/beforePlaying.json";
 import Playing from "@assets/lotties/playing.json";
 
-const RecordBar = ({ barType }: RecordBarProps) => {
+const RecordBar = ({ barType, isPlaying, setIsPlaying }: RecordBarProps) => {
   const lottieOptions = {
-    loop: barType === "beforeRecord" ? false : true,
-    autoplay: barType === "beforeRecord" ? false : true,
+    loop: barType === "beforeRecord" ? false : isPlaying ? true : false,
+    autoplay: barType === "beforeRecord" ? false : isPlaying ? true : false,
     animationData: barType === "beforeRecord" ? BeforePlaying : Playing,
     rendererSettings: {
       preserveAspectRatio: "xMidYMid slice"
@@ -19,7 +19,7 @@ const RecordBar = ({ barType }: RecordBarProps) => {
     <S.RecordBarWrapper barType={barType}>
       {barType === "afterRecord" && (
         // TODO: 재생 기능 추가
-        <button>
+        <button onClick={() => setIsPlaying(true)}>
           <PlayIcon />
         </button>
       )}

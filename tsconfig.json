@@ -11,7 +11,8 @@
       "@routes/*": ["routes/*"],
       "@styles/*": ["styles/*"],
       "@types/*": ["types/*"],
-      "@utils/*": ["utils/*"]
+      "@utils/*": ["utils/*"],
+      "@stores/*": ["stores/*"]
     },
     "target": "ES2020",
     "useDefineForClassFields": true,

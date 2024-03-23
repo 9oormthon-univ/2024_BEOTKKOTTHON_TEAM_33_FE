@@ -6,8 +6,6 @@ import { toast } from "react-hot-toast";
 import BaseButton from "@components/BaseButton/BaseButton";
 
 const Album = () => {
-  const vw = window.innerWidth;
-
   const { data: photos } = useImages();
 
   const [selectedPhotos, setSelectedPhotos] = useState<Photo[]>([]);
@@ -56,7 +54,7 @@ const Album = () => {
           </S.PhotoWrapper>
         ))}
       </S.AlbumContainer>
-      <S.BaseButtonWrapper width={vw > 768 ? "70%" : "100%"}>
+      <S.BaseButtonWrapper width="100%">
         {/* TODO: 이동 로직 추가 */}
         <BaseButton buttonType="abled" width="100%">
           이 사진으로 할래요

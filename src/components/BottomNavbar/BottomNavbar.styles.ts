@@ -19,7 +19,7 @@ export const BottomNavbarWrapper = styled.div`
   margin: 0 auto;
   user-select: none;
   z-index: 999;
-  max-width: 780px;
+  max-width: 768px;
   left: 50%;
   transform: translateX(-50%);
 

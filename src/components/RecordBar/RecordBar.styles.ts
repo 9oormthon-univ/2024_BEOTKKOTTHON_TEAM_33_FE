@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
-import { RecordBarProps } from "./RecordBar.types";
+import { RecordBarStylesProps } from "./RecordBar.types";
 
-export const RecordBarWrapper = styled.div<RecordBarProps>`
+export const RecordBarWrapper = styled.div<RecordBarStylesProps>`
   width: 100%;
   height: 51px;
   flex-shrink: 0;
@@ -18,12 +18,12 @@ export const RecordBarWrapper = styled.div<RecordBarProps>`
   margin-top: 20px;
 `;
 
-export const LottieWrapper = styled.div<RecordBarProps>`
+export const LottieWrapper = styled.div<RecordBarStylesProps>`
   width: 100%;
   margin-left: ${({ barType }) => (barType === "afterRecord" ? "0" : "30px")};
 `;
 
-export const TimerText = styled.p<RecordBarProps>`
+export const TimerText = styled.p<RecordBarStylesProps>`
   color: ${({ barType }) => (barType === "beforeRecord" ? "#000" : "#fff")};
   text-align: center;
 
