@@ -8,6 +8,7 @@ export const ChatWrapper = styled.div`
   padding-right: 16px;
   overflow-y: auto;
   max-height: 100vh;
+  padding-top: 20px;
 `;
 
 export const BaseSheetWrapper = styled.div`
