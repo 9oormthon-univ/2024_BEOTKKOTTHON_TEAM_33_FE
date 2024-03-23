@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-
+import { BottomModalProps } from "./LogOutModal.types";
 const ModalOverlay = styled.div<{ isOpen: boolean }>`
   position: fixed;
   top: 0;
@@ -27,10 +27,7 @@ const ModalContent = styled.div`
   display: flex;
   cursor: pointer;
 `;
-interface BottomModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+
 const LogOutModal = ({ isOpen, onClose }: BottomModalProps) => {
   // 나중에 여기서 로그아웃 연동
   const checkClick = () => {
