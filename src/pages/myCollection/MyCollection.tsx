@@ -1,12 +1,16 @@
 import * as S from "./MyCollection.styles";
 import { useState } from "react";
-import useImages from "@hooks/useImages";
 import Swiper from "@components/Swiper/Swiper";
 import { useNavigate } from "react-router-dom";
+import useDiary from "@hooks/useDiary";
 
 const MyCollection = () => {
-  const { data: photos } = useImages();
+  const { data: togetherData } = useDiary(1);
+  const { data: orderData } = useDiary(2);
   const navigate = useNavigate();
+
+  console.log(togetherData);
+  console.log(orderData);
 
   const [currentTab, setCurrentTab] = useState("together");
 
@@ -34,53 +38,22 @@ const MyCollection = () => {
       </S.TabBarWrapper>
       {currentTab === "together" ? (
         <S.TogetherWrapper>
-          <S.CategoryWrapper>
-            <S.CategoryTitle>3월의 일기</S.CategoryTitle>
-            <Swiper>
-              {photos.map((photo: any) => (
-                <S.CategoryImageWrapper key={photo.id}>
-                  <S.CategoryImage src={photo.download_url} />
-                </S.CategoryImageWrapper>
-              ))}
-            </Swiper>
-          </S.CategoryWrapper>
-
-          <S.CategoryWrapper>
-            <S.CategoryTitle>즐거웠던 나날</S.CategoryTitle>
-            <Swiper>
-              {photos.map((photo: any) => (
-                <S.CategoryImageWrapper key={photo.id}>
-                  <S.CategoryImage src={photo.download_url} />
-                </S.CategoryImageWrapper>
-              ))}
-            </Swiper>
-          </S.CategoryWrapper>
-
-          <S.CategoryWrapper>
-            <S.CategoryTitle>함께한 추억</S.CategoryTitle>
-            <Swiper>
-              {photos.map((photo: any) => (
-                <S.CategoryImageWrapper key={photo.id}>
-                  <S.CategoryImage src={photo.download_url} />
-                </S.CategoryImageWrapper>
-              ))}
-            </Swiper>
-          </S.CategoryWrapper>
-
-          <S.CategoryWrapper>
-            <S.CategoryTitle>혼자서도 행복해</S.CategoryTitle>
-            <Swiper>
-              {photos.map((photo: any) => (
-                <S.CategoryImageWrapper key={photo.id}>
-                  <S.CategoryImage src={photo.download_url} />
-                </S.CategoryImageWrapper>
-              ))}
-            </Swiper>
-          </S.CategoryWrapper>
+          {Array.isArray(togetherData) &&
+            togetherData.map((data: any, index) => (
+              <S.CategoryWrapper key={index}>
+                <S.CategoryTitle>{data.hashtagName}</S.CategoryTitle>
+                <Swiper>
+                  {data.diaryResDtoList.content.map((diary: any) => (
+                    <S.CategoryImageWrapper key={diary.diaryId}>
+                      <S.CategoryImage src={diary.imageResDtoList[0].convertImageUrl} />
+                    </S.CategoryImageWrapper>
+                  ))}
+                </Swiper>
+              </S.CategoryWrapper>
+            ))}
         </S.TogetherWrapper>
       ) : (
         <S.InOrderWrapper>
-          {/* TODO: API 연동 후 navigate 시 id값 넘겨주기 */}
           <S.ThumbnailWrapper onClick={() => navigate("/diaryDetail?from=myCollection")}>
             <S.ThumbnailCover>
               <S.ThumbnailTitle>즐거운 꽃놀이</S.ThumbnailTitle>
