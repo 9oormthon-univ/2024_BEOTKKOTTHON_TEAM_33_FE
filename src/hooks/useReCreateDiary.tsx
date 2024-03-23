@@ -1,12 +1,12 @@
 import { useMutation } from "@tanstack/react-query";
 import { AxiosError } from "axios";
-import postDiary from "@apis/postDiary";
+import postReDiary from "@apis/postReDiary";
 import { toast } from "react-hot-toast";
-import ContentProps from "@/types/contentProps";
+import ReContentProps from "@/types/reContentProps";
 
-const useCreateDiary = () => {
+const useReCreateDiary = () => {
   return useMutation({
-    mutationFn: (content: ContentProps) => postDiary(content),
+    mutationFn: (content: ReContentProps) => postReDiary(content),
     onSuccess: (res: any) => {
       console.log("Success");
       localStorage.setItem("diary", JSON.stringify(res.data));
@@ -14,9 +14,9 @@ const useCreateDiary = () => {
     onError: (error: AxiosError) => {
       console.log(error);
 
-      toast.error("일기 업로드에 실패했습니다.\n다시 시도해주세요.");
+      toast.error("일기 재생성에 실패했습니다.\n다시 시도해주세요.");
     }
   });
 };
 
-export default useCreateDiary;
+export default useReCreateDiary;
