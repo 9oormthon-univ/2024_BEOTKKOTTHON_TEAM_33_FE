@@ -57,7 +57,12 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
     const audioBlob = new Blob(recordedChunks, { type: "audio/wav" });
     const audioUrl = URL.createObjectURL(audioBlob);
     const audio = new Audio(audioUrl);
+
     audio.play();
+
+    audio.onended = () => {
+      setIsPlaying(false);
+    };
   };
 
   useEffect(() => {
