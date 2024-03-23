@@ -6,14 +6,18 @@ import RecordIcon from "@assets/icons/recordIcon.svg?react";
 import StopIcon from "@assets/icons/stopIcon.svg?react";
 import ReplayIcon from "@assets/icons/replayIcon.svg?react";
 import { RecordBottomSheetContentProps } from "./RecordBottomSheetContent.types";
+import { diaryState } from "@stores/diaryStore";
+import { useRecoilState } from "recoil";
 
 const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProps) => {
+  const [diary, setDiary] = useRecoilState(diaryState);
+
   const [barType, setBarType] = useState<"beforeRecord" | "recording" | "afterRecord">(
     "beforeRecord"
   );
   const [isPlaying, setIsPlaying] = useState(false);
-
   const [recordedChunks, setRecordedChunks] = useState<Blob[]>([]);
+  const [transcript, setTranscript] = useState<string>("");
 
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
@@ -23,8 +27,7 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
   recognition.interimResults = false;
 
   recognition.onresult = (event: any) => {
-    const transcript = event.results[0][0].transcript;
-    console.log("Transcript:", transcript);
+    setTranscript(event.results[0][0].transcript);
   };
 
   recognition.onerror = (event: any) => {
@@ -87,6 +90,14 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
     }
   }, [isPlaying]);
 
+  useEffect(() => {
+    console.log("Transcript:", transcript);
+  }, [transcript]);
+
+  useEffect(() => {
+    console.log(diary);
+  }, [diary]);
+
   return (
     <CS.BaseBottomSheetContentWrapper>
       <CS.MainTitle>추억을 말해주세요!</CS.MainTitle>
@@ -116,20 +127,26 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
         ) : (
           <button
             onClick={() => {
-              setBarType("beforeRecord");
+              setBarType("recording");
+              recognition.stop();
+              recognition.start();
             }}
           >
             <ReplayIcon />
           </button>
         )}
-        <S.DoneText
-          onClick={
-            // TODO: STT 기능 추가
-            () => setIsVisible(false)
-          }
-        >
-          완료
-        </S.DoneText>
+        {barType === "afterRecord" ? (
+          <S.DoneText
+            onClick={() => {
+              setIsVisible(false);
+              setDiary({ ...diary, voiceText: transcript });
+            }}
+          >
+            완료
+          </S.DoneText>
+        ) : (
+          <S.DoneText>완료</S.DoneText>
+        )}
       </S.BottomSectionWrapper>
     </CS.BaseBottomSheetContentWrapper>
   );
