@@ -1,6 +1,7 @@
 import * as S from "./EmotionChoice.styles";
+
 import { useEffect, useState } from "react";
-import { UserChatBubble } from "@components/ChatBubble/ChatBubble";
+import { UserChatBubble, BotChatBubble } from "@components/ChatBubble/ChatBubble";
 import useCreateDiary from "@hooks/useCreateDiary";
 import { diaryState } from "@stores/diaryStore";
 import { useRecoilState } from "recoil";
@@ -130,7 +131,15 @@ const EmotionChoice = () => {
             </S.EmotionButton>
           ))}
         </S.InnerWrapper>
-        {isChatVisible && <UserChatBubble text={emotionText} />}
+        {isChatVisible && (
+          <>
+            <UserChatBubble text={emotionText} />{" "}
+            <BotChatBubble
+              text={"말씀해주신 내용들을 토대로 멋진 추억 일기를 만들어 드릴게요!"}
+              num={2}
+            ></BotChatBubble>
+          </>
+        )}
       </S.EmotionWrapper>
     </>
   );

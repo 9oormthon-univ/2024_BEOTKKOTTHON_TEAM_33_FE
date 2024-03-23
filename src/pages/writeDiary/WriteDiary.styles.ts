@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 
 // 스크롤 핸들러 등록해야해서 css말고 div로 잡음
-export const ChatWrapper = styled.div`
+export const ChatWrapper = styled.div<{ isRecording: boolean }>`
   display: flex;
   flex-direction: column;
   padding-left: 16px;
@@ -9,6 +9,7 @@ export const ChatWrapper = styled.div`
   overflow-y: auto;
   max-height: 100vh;
   padding-top: 20px;
+  /* padding-bottom: ${(props) => (props.isRecording ? "220px" : "220px")}; */
 `;
 
 export const BaseSheetWrapper = styled.div`
