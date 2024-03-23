@@ -25,7 +25,7 @@ const ImagePagination = ({ images, isLogin, width, height }: ImagePaginationProp
   return (
     <>
       {/* 로그인시엔 dot1과 문구, 아니면 개별dots(일기생성) 렌더링하게 */}
-      {isLogin === true ? (
+      {isLogin === true && Array.isArray(images) ? (
         <S.LoginWrapper {...handlers}>
           <img src={images[currentIndex]} />
           {currentIndex == 0 ? (

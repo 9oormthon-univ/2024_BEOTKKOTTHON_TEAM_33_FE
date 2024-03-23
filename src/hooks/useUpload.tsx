@@ -3,14 +3,25 @@ import { AxiosError } from "axios";
 import postUpload from "@apis/postUpload";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-hot-toast";
+import { photoURLState } from "@stores/photoURLStore";
+import { useRecoilState } from "recoil";
+
+interface responseType {
+  convertImageUrl: string;
+  imageSequence: number;
+}
 
 const useUpload = () => {
+  const [, setPhotoURL] = useRecoilState(photoURLState);
+
   const navigate = useNavigate();
 
   return useMutation({
     mutationFn: (photos: string[]) => postUpload(photos),
-    onSuccess: () => {
-      console.log("Success");
+    onSuccess: (res: any) => {
+      const photoUrls = res.data.map((photo: responseType) => photo.convertImageUrl);
+
+      setPhotoURL(photoUrls);
 
       navigate("/writeDiary");
     },
