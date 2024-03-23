@@ -18,6 +18,23 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
   const mediaStreamRef = useRef<MediaStream | null>(null);
   const mediaRecorderRef = useRef<MediaRecorder | null>(null);
 
+  const recognition = new (window as any).webkitSpeechRecognition();
+  recognition.lang = "ko-KR";
+  recognition.interimResults = false;
+
+  recognition.onresult = (event: any) => {
+    const transcript = event.results[0][0].transcript;
+    console.log("Transcript:", transcript);
+  };
+
+  recognition.onerror = (event: any) => {
+    console.error("Error occurred during speech recognition:", event.error);
+  };
+
+  recognition.onend = () => {
+    console.log("Speech recognition completed.");
+  };
+
   const startRecording = () => {
     const initRecording = async () => {
       try {
@@ -33,7 +50,6 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
         };
 
         mediaRecorder.onstop = () => {
-          const audioBlob = new Blob(chunks, { type: "audio/wav" });
           setRecordedChunks(chunks);
         };
 
@@ -82,6 +98,7 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
             onClick={() => {
               setBarType("recording");
               startRecording();
+              recognition.start();
             }}
           >
             <RecordIcon />
@@ -91,6 +108,7 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
             onClick={() => {
               setBarType("afterRecord");
               stopRecording();
+              recognition.stop();
             }}
           >
             <StopIcon />
