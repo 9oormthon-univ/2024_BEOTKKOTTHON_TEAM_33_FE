@@ -18,11 +18,53 @@ export const MainSectionWrapper = styled.div`
   justify-content: center;
   align-items: flex-start;
   width: 100%;
+
+  /* TODO: ImagePagination과 겹침 */
+  margin-top: 16px;
+`;
+
+export const ContentTitleWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+`;
+
+export const TitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+`;
+
+export const NameText = styled.p`
+  color: #000;
+
+  ${({ theme }) => theme.text.detail2_bold};
 `;
 
 export const DateText = styled.p`
-  ${({ theme }) => theme.colors.gray[400]};
+  color: ${({ theme }) => theme.colors.gray[400]};
   ${({ theme }) => theme.text.detail2_reg};
+`;
+
+export const VoiceButton = styled.button`
+  width: 126px;
+  height: 30px;
+  flex-shrink: 0;
+
+  border-radius: 8px;
+  border: ${({ theme }) => theme.colors.gray[300]} 1px solid;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+`;
+
+export const VoiceButtonText = styled.p`
+  color: #000;
+  ${({ theme }) => theme.text.body3_bold};
 `;
 
 export const TagWrapper = styled.div`
@@ -42,6 +84,7 @@ export const Content = styled.p`
   ${({ theme }) => theme.text.detail1_reg};
 
   margin-top: 12px;
+  margin-bottom: 20px;
 `;
 
 export const ButtonWrapper = styled.div`
@@ -81,4 +124,11 @@ export const ToggleButtonWrapper = styled.div`
 export const ToggleButtonText = styled.p`
   color: ${({ theme }) => theme.colors.pink[500]};
   ${({ theme }) => theme.text.detail2_reg};
+`;
+
+export const LikeButtonWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
 `;
