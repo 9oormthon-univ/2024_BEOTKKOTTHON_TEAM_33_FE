@@ -7,16 +7,14 @@ import ImagePagination from "@components/ImagePagination/ImagePagination";
 import RecordBottomSheetContent from "@components/RecordBottomSheetContent/RecordBottomSheetContent";
 import EmotionChoice from "@components/EmotionChoice/EmotionChoice";
 import * as T from "./WriteDiary.types";
+import { photoURLState } from "@stores/photoURLStore";
+import { useRecoilState } from "recoil";
+
 const WriteDiary = () => {
-  const images = [
-    "../src/assets/icons/diaryImageTest1.jpg",
-    "../src/assets/icons/diaryImageTest2.jpg",
-    "../src/assets/icons/Users Network.jpg",
-    "../src/assets/icons/Sending Receiving Texts Messages.jpg"
-  ];
+  const [images] = useRecoilState(photoURLState);
+
   const [isVisible, setIsVisible] = useState(false);
   const [isRecording, setIsRecording] = useState(false);
-  const [isImageVisible, setIsImageVisible] = useState(true); //나중에 이부분 false로 바꾸고 api받았을때 true로 해서 쓰면됨
   const chatListRef = useRef<HTMLDivElement>(null);
   const [isPressed, setIsPressed] = useState(false);
   // const [isEmotionVisible, setIsEmotionVisible] = useState(true); //나중에 false로 바꾸고 필요할때 set으로 쓰면됨
@@ -31,7 +29,6 @@ const WriteDiary = () => {
   };
 
   useEffect(() => {
-    setIsImageVisible(true); //나중에 삭제
     chatListRef.current?.scrollTo(0, chatListRef.current.scrollHeight);
     const timer = setTimeout(() => {
       setIsVisible(true);
@@ -54,7 +51,7 @@ const WriteDiary = () => {
         <BottomSheet isVisible={isVisible} setIsVisible={setIsVisible}>
           <BaseBottomSheetContent />
         </BottomSheet>
-        {isImageVisible === true ? (
+        {isImageVisible === true && images ? (
           <>
             <BotChatBubble text="이 사진에 어떤 추억이 있는지 알려주세요~!"></BotChatBubble>
             <BotChatBubble text={T.recommend} num={2}></BotChatBubble>
