@@ -63,48 +63,31 @@ const MonthItem = styled.div<{ isSelected: boolean }>`
 
 const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
   const [selectedMonth, setSelectedMonth] = useState<string>("2024년 3월");
+  // const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
   const handleMonthSelect = (month: string) => {
-    console.log("Selected month:", month);
     setSelectedMonth(month);
-    onClose(); // 모달 닫기
+    onClose();
   };
+
+  const months = ["2024년 4월", "2024년 3월", "2024년 2월", "2024년 1월"];
 
   return (
     <>
       <ModalOverlay isOpen={isOpen} onClick={onClose} />
       <ModalContainer isOpen={isOpen}>
         <ModalContent>
-          {/* <CloseButton onClick={onClose}>Close</CloseButton> */}
           <MonthSelectionTitle>달 선택하기</MonthSelectionTitle>
-          <MonthItem
-            isSelected={selectedMonth === "2024년 4월"}
-            onClick={() => handleMonthSelect("2024년 4월")}
-          >
-            2024년 4월
-            {selectedMonth === "2024년 4월" ? <CheckIcon /> : null}
-          </MonthItem>
-          <MonthItem
-            isSelected={selectedMonth === "2024년 3월"}
-            onClick={() => handleMonthSelect("2024년 3월")}
-          >
-            2024년 3월
-            {selectedMonth === "2024년 3월" ? <CheckIcon /> : null}
-          </MonthItem>
-          <MonthItem
-            isSelected={selectedMonth === "2024년 2월"}
-            onClick={() => handleMonthSelect("2024년 2월")}
-          >
-            2024년 2월
-            {selectedMonth === "2024년 2월" ? <CheckIcon /> : null}
-          </MonthItem>
-          <MonthItem
-            isSelected={selectedMonth === "2024년 1월"}
-            onClick={() => handleMonthSelect("2024년 1월")}
-          >
-            2024년 1월
-            {selectedMonth === "2024년 1월" ? <CheckIcon /> : null}
-          </MonthItem>
+          {months.map((month, index) => (
+            <MonthItem
+              key={index}
+              isSelected={selectedMonth === month}
+              onClick={() => handleMonthSelect(month)}
+            >
+              {month}
+              {selectedMonth === month && <CheckIcon />}
+            </MonthItem>
+          ))}
         </ModalContent>
       </ModalContainer>
     </>
