@@ -9,9 +9,6 @@ const MyCollection = () => {
   const { data: orderData } = useDiary(2);
   const navigate = useNavigate();
 
-  console.log(togetherData);
-  console.log(orderData);
-
   const [currentTab, setCurrentTab] = useState("together");
 
   return (
@@ -23,7 +20,6 @@ const MyCollection = () => {
           ) : (
             <S.NormalText>모아서 보기</S.NormalText>
           )}
-
           {currentTab === "together" && <S.UnderLine />}
         </S.TabButton>
         <S.TabButton onClick={() => setCurrentTab("inOrder")}>
@@ -32,7 +28,6 @@ const MyCollection = () => {
           ) : (
             <S.NormalText>순서대로 보기</S.NormalText>
           )}
-
           {currentTab === "inOrder" && <S.UnderLine />}
         </S.TabButton>
       </S.TabBarWrapper>
@@ -45,7 +40,7 @@ const MyCollection = () => {
                 <Swiper>
                   {data.diaryResDtoList.content.map((diary: any) => (
                     <S.CategoryImageWrapper key={diary.diaryId}>
-                      <S.CategoryImage src={diary.imageResDtoList[0].convertImageUrl} />
+                      <S.CategoryImage src={diary.imageResDtoList[0]?.convertImageUrl} />
                     </S.CategoryImageWrapper>
                   ))}
                 </Swiper>
@@ -54,21 +49,21 @@ const MyCollection = () => {
         </S.TogetherWrapper>
       ) : (
         <S.InOrderWrapper>
-          <S.ThumbnailWrapper onClick={() => navigate("/diaryDetail?from=myCollection")}>
-            <S.ThumbnailCover>
-              <S.ThumbnailTitle>즐거운 꽃놀이</S.ThumbnailTitle>
-              <S.ThumbnailDate>2024년 3월 24일</S.ThumbnailDate>
-            </S.ThumbnailCover>
-            <S.ThumbnailImage src="https://avatars.githubusercontent.com/u/139189221?v=4" />
-          </S.ThumbnailWrapper>
-
-          <S.ThumbnailWrapper onClick={() => navigate("/diaryDetail?from=myCollection")}>
-            <S.ThumbnailCover>
-              <S.ThumbnailTitle>붕어빵 삼대</S.ThumbnailTitle>
-              <S.ThumbnailDate>2024년 3월 17일</S.ThumbnailDate>
-            </S.ThumbnailCover>
-            <S.ThumbnailImage src="https://avatars.githubusercontent.com/u/139189221?v=4" />
-          </S.ThumbnailWrapper>
+          {Array.isArray(orderData) &&
+            orderData.map((data: any) =>
+              data.diaryResDtoList?.content.map((content: any, index: number) => (
+                <S.ThumbnailWrapper
+                  key={index}
+                  onClick={() => navigate("/diaryDetail?from=myCollection")}
+                >
+                  <S.ThumbnailCover>
+                    <S.ThumbnailTitle>{content.title}</S.ThumbnailTitle>
+                    <S.ThumbnailDate>{content.createAt}</S.ThumbnailDate>
+                  </S.ThumbnailCover>
+                  <S.ThumbnailImage src={content.imageResDtoList[0]?.convertImageUrl} />
+                </S.ThumbnailWrapper>
+              ))
+            )}
         </S.InOrderWrapper>
       )}
     </>
