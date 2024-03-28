@@ -54,7 +54,9 @@ const MyCollection = () => {
               data.diaryResDtoList?.content.map((content: any, index: number) => (
                 <S.ThumbnailWrapper
                   key={index}
-                  onClick={() => navigate("/diaryDetail?from=myCollection")}
+                  onClick={() =>
+                    navigate(`/diaryDetail?from=myCollection&diaryId=${content.diaryId}`)
+                  }
                 >
                   <S.ThumbnailCover>
                     <S.ThumbnailTitle>{content.title}</S.ThumbnailTitle>
