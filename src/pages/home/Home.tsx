@@ -11,15 +11,12 @@ const Home = () => {
     navigate("/writeDiary");
   };
   useEffect(() => {
-    // 로컬 스토리지에서 isFirstVisit 값을 가져옴
-    const isFirstVisit = localStorage.getItem("isFirstVisit");
-    console.log(isFirstVisit);
-    // isFirstVisit 값이 null이거나 false이면(첫 방문이거나 온보딩을 이미 마친 경우)
-    // 온보딩 페이지로 이동
-    if (isFirstVisit === "true" || isFirstVisit === null) {
+    console.log("겟아이템:" + sessionStorage.getItem("accessToken"));
+    if (sessionStorage.getItem("accessToken") === null) {
+      console.log("토큰없음인식");
       navigate("/onboarding");
     }
-  }, [navigate]);
+  }, []);
   const [randomText, setRandomText] = useState<string>("");
   useEffect(() => {
     const newText = getRandomText();

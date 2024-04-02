@@ -3,13 +3,26 @@ import * as S from "./OtherCollection.styles";
 import { useState, useEffect } from "react";
 import DownButton from "@assets/icons/ion_chevron-down.svg?react";
 import BottomModal from "./BottomModal";
+import useOtherCollection from "@hooks/useOtherCollection";
+import { Card } from "./OtherCollection.types";
 
 const OtherCollection = () => {
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [card, setCard] = useState([]);
+  const [filterOption, setFilterOption] = useState(1);
+  const [presentMonth, setPresentMonth] = useState(3);
+  const { data } = useOtherCollection({
+    filter: filterOption,
+    year: 2024,
+    month: presentMonth
+  });
 
   const handleModalToggle = () => {
     setIsModalOpen(!isModalOpen);
+  };
+  const handleFilter = (num: number) => {
+    setFilterOption(num);
   };
 
   useEffect(() => {
@@ -25,46 +38,49 @@ const OtherCollection = () => {
     };
   }, []);
 
+  useEffect(() => {
+    console.log("pre" + presentMonth);
+    console.log("리턴된", data); //첫 렌더링시에 이 줄이 undefined로 출력됨(곧바로 응답객체가 출력되긴 하지만) : 페이지 첫 렌더링시에 (아직 data가 들어오기 전) 호출되어서 그러는듯.. 뭔가 좋은 방법?
+    if (data) {
+      const cardData = data.map((card: Card) => ({
+        title: card.title,
+        writer: card.writer,
+        likeCount: card.likeCount,
+        photoUrl: card.imageResDtoList[0].convertImageUrl
+      }));
+      console.log("가공된", cardData);
+      setCard(cardData);
+    }
+  }, [data]);
+
   return (
     <>
       <S.HeaderWrapper isSticky={isHeaderSticky}>
         <S.InnerWrapper>
-          <S.MonthText>3월 일기</S.MonthText>
+          <S.MonthText>{presentMonth}월 일기</S.MonthText>
           <div onClick={handleModalToggle}>
             <DownButton />
           </div>
-          <BottomModal isOpen={isModalOpen} onClose={handleModalToggle} />
+          <BottomModal
+            isOpen={isModalOpen}
+            onClose={handleModalToggle}
+            setPresentMonth={setPresentMonth}
+          />
         </S.InnerWrapper>
         <S.InnerWrapper>
-          <S.ChooseText>최신순 | </S.ChooseText>
-          <S.ChooseText>인기순</S.ChooseText>
+          <S.ChooseText onClick={() => handleFilter(1)}>최신순 | </S.ChooseText>
+          <S.ChooseText onClick={() => handleFilter(2)}>인기순</S.ChooseText>
         </S.InnerWrapper>
       </S.HeaderWrapper>
       <S.CollectionWrapper>
-        <OtherDiaryCard
-          title="일기 제목 이라네"
-          userName="나윤댕"
-          likeNumber={24}
-          photoUrl="../src/assets/icons/diaryImageTest1.jpg"
-        />
-        <OtherDiaryCard
-          title="일기 제목 이라네"
-          userName="나윤댕"
-          likeNumber={24}
-          photoUrl="../src/assets/icons/diaryImageTest1.jpg"
-        />
-        <OtherDiaryCard
-          title="일기 제목 이라네"
-          userName="나윤댕"
-          likeNumber={24}
-          photoUrl="../src/assets/icons/diaryImageTest1.jpg"
-        />
-        <OtherDiaryCard
-          title="일기 제목 이라네"
-          userName="나윤댕"
-          likeNumber={24}
-          photoUrl="../src/assets/icons/diaryImageTest1.jpg"
-        />
+        {card.map((cards: Card) => (
+          <OtherDiaryCard
+            title={cards.title}
+            userName={cards.writer}
+            likeNumber={cards.likeCount}
+            photoUrl={cards.photoUrl}
+          />
+        ))}
       </S.CollectionWrapper>
     </>
   );
