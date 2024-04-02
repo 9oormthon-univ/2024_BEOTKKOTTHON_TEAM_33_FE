@@ -9,7 +9,10 @@ import { RecordBottomSheetContentProps } from "./RecordBottomSheetContent.types"
 import { diaryState } from "@stores/diaryStore";
 import { useRecoilState } from "recoil";
 
-const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProps) => {
+const RecordBottomSheetContent = ({
+  setIsVisible,
+  setEmotionVisible
+}: RecordBottomSheetContentProps) => {
   const [diary, setDiary] = useRecoilState(diaryState);
 
   const [barType, setBarType] = useState<"beforeRecord" | "recording" | "afterRecord">(
@@ -138,6 +141,7 @@ const RecordBottomSheetContent = ({ setIsVisible }: RecordBottomSheetContentProp
         {barType === "afterRecord" ? (
           <S.DoneText
             onClick={() => {
+              setEmotionVisible(true);
               setIsVisible(false);
               setDiary({ ...diary, diaryType: "사진일기", voiceText: transcript });
             }}
