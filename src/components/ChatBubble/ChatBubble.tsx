@@ -1,5 +1,4 @@
 import * as S from "./ChatBubble.styles";
-import ChatIcon from "@assets/icons/chaticon.svg?react";
 import { BubbleText } from "./ChatBubble.types";
 import Lottie from "react-lottie";
 import { useEffect, useState } from "react";
@@ -68,7 +67,10 @@ export const BotChatBubble = ({ text, num }: BubbleText) => {
   return (
     <>
       <S.BotOuterWrapper>
-        <ChatIcon />
+        <img
+          src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_33_FE/blob/develop/src/assets/icons/chatIcon.png?raw=true"
+          style={{ width: "36px", height: "36px" }}
+        />
         {isLoading === true ? (
           <S.BotMessageWrapper>
             <Lottie options={defaultOptions} />
