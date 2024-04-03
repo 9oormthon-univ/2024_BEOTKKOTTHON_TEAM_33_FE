@@ -5,6 +5,7 @@ import CheckIcon from "@assets/icons/ion_checkmark.svg?react";
 interface BottomModalProps {
   isOpen: boolean;
   onClose: () => void;
+  setPresentMonth: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const ModalOverlay = styled.div<{ isOpen: boolean }>`
@@ -33,12 +34,6 @@ const ModalContent = styled.div`
   padding: 20px;
 `;
 
-// const CloseButton = styled.button`
-//   position: absolute;
-//   top: 10px;
-//   right: 10px;
-// `;
-
 const MonthSelectionTitle = styled.div`
   font-style: ${({ theme }) => theme.text.body1_bold};
   width: 100%;
@@ -61,16 +56,17 @@ const MonthItem = styled.div<{ isSelected: boolean }>`
   align-items: center;
 `;
 
-const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
-  const [selectedMonth, setSelectedMonth] = useState<string>("2024년 3월");
+const BottomModal = ({ isOpen, onClose, setPresentMonth }: BottomModalProps) => {
+  const [selectedMonth, setSelectedMonth] = useState<number>(3);
   // const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
-  const handleMonthSelect = (month: string) => {
+  const handleMonthSelect = (month: number) => {
     setSelectedMonth(month);
     onClose();
+    setPresentMonth(month);
   };
 
-  const months = ["2024년 4월", "2024년 3월", "2024년 2월", "2024년 1월"];
+  const months = [4, 3, 2, 1];
 
   return (
     <>
@@ -84,8 +80,7 @@ const BottomModal = ({ isOpen, onClose }: BottomModalProps) => {
               isSelected={selectedMonth === month}
               onClick={() => handleMonthSelect(month)}
             >
-              {month}
-              {selectedMonth === month && <CheckIcon />}
+              2024년 {month}월{selectedMonth === month && <CheckIcon />}
             </MonthItem>
           ))}
         </ModalContent>

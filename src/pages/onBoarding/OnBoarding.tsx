@@ -7,8 +7,8 @@ const OnBoarding = () => {
   const navigate = useNavigate();
   useEffect(() => {
     setTimeout(() => {
-      localStorage.setItem("isFirstVisit", "false");
-      navigate("/");
+      // localStorage.setItem("isFirstVisit", "false");
+      navigate("/login");
     }, 3000);
   }, []);
   return (

@@ -3,4 +3,5 @@ export interface ImagePaginationProps {
   isLogin: boolean;
   width?: string;
   height?: string;
+  setImageVisible?: React.Dispatch<React.SetStateAction<boolean>>;
 }
