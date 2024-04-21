@@ -1,12 +1,9 @@
 import { motion } from "framer-motion";
-import { useState } from "react";
 import * as S from "./ToggleButton.styles";
 
-const ToggleButton = () => {
-  const [isOn, setIsOn] = useState(false);
-
+const ToggleButton = ({ isOn }: { isOn: boolean }) => {
   return (
-    <S.ToggleButtonWrapper isOn={isOn} onClick={() => setIsOn(!isOn)}>
+    <S.ToggleButtonWrapper isOn={isOn}>
       <motion.div
         className="handle"
         layout

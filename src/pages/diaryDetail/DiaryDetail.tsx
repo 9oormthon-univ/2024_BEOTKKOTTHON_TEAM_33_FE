@@ -39,14 +39,14 @@ const DiaryDetail = () => {
 
   const { data: diaryDetailData, refetch } = diaryId && (useDiaryDetail(diaryId) as any);
   const { mutate: reCreateDiary, isSuccess } = useReCreateDiary();
-  const { mutate: postShareDiary } = useShareDiary(setIsVisible);
+  const { mutate: postShareDiary } = useShareDiary(setIsVisible, isOn, setIsOn);
   const { mutateAsync: postLike } = usePostLike(setIsLike);
   const { mutateAsync: deleteLike } = useDeleteLike(setIsLike);
 
   const ModalProps = {
-    title: isOn ? "함깨보기에 내 일기를\n공유할까요?" : "공유한 일기를\n비공개할까요?",
-    isVisible: isVisible,
-    setIsVisible: setIsVisible,
+    title: isOn ? "공유한 일기를\n비공개할까요?" : "함깨보기에 내 일기를\n공유할까요?",
+    isVisible,
+    setIsVisible,
     isCancelTextExist: true
   };
 
@@ -80,9 +80,15 @@ const DiaryDetail = () => {
           })
       );
 
+      setIsOn(diaryDetailData.isPublic);
+
       setIsLike(diaryDetailData.isLike);
     }
   }, [diaryDetailData]);
+
+  useEffect(() => {
+    console.log(isOn);
+  }, [isOn]);
 
   return (
     <Suspense fallback={<Spinner />}>
@@ -160,10 +166,9 @@ const DiaryDetail = () => {
               <div
                 onClick={() => {
                   setIsVisible(!isVisible);
-                  setIsOn(!isOn);
                 }}
               >
-                <ToggleButton />
+                <ToggleButton isOn={isOn} />
               </div>
             </S.ToggleButtonWrapper>
 
@@ -173,7 +178,7 @@ const DiaryDetail = () => {
                 width="100%"
                 onClick={() => diaryData?.diaryId && handleShareDiary(diaryData?.diaryId)}
               >
-                {isOn ? "공유하기" : "나만보기"}
+                {isOn ? "나만보기" : "공유하기"}
               </BaseButton>
             </Modal>
           </>
