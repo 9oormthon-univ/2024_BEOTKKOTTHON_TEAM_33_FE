@@ -2,7 +2,7 @@ import * as S from "./DiaryDetail.styles";
 import ImagePagination from "@components/ImagePagination/ImagePagination";
 import Tag from "@components/Tag/Tag";
 import BaseButton from "@components/BaseButton/BaseButton";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import ToggleButton from "@components/ToggleButton/ToggleButton";
 import { useState, useEffect, Suspense } from "react";
 import Modal from "@components/Modal/Modal";
@@ -27,8 +27,6 @@ const DiaryDetail = () => {
   const diaryId = Number(searchParams.get("diaryId"));
 
   const [diary] = useRecoilState(diaryState);
-
-  const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = useState(false);
   const [isOn, setIsOn] = useState(false);
