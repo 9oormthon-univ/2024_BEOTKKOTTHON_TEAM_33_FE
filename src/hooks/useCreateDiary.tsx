@@ -6,7 +6,7 @@ import ContentProps from "@/types/contentProps";
 
 const useCreateDiary = () => {
   return useMutation({
-    mutationFn: (content: ContentProps) => postDiary(content),
+    mutationFn: async (content: ContentProps) => await postDiary(content),
     onSuccess: (res: any) => {
       console.log("Success");
       localStorage.setItem("diary", JSON.stringify(res.data));

@@ -5,4 +5,5 @@ export interface Card {
   convertImageUrl: string;
   imageResDtoList: { convertImageUrl: string }[];
   photoUrl: string;
+  diaryId: number;
 }

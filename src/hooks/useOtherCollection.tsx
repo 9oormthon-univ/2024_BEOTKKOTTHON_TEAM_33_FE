@@ -5,7 +5,7 @@ import { OtherContentParams } from "@/types/otherCollectionProps";
 const useOtherCollection = (params: OtherContentParams) => {
   const { data } = useQuery({
     queryKey: ["otherCollection", params],
-    queryFn: () => getOtherCollection(params)
+    queryFn: async () => await getOtherCollection(params)
   });
 
   return { data };

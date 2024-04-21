@@ -4,7 +4,7 @@ import getImages from "@apis/getImages";
 const useImages = () => {
   return useSuspenseQuery({
     queryKey: ["images"],
-    queryFn: () => getImages()
+    queryFn: async () => await getImages()
   });
 };
 

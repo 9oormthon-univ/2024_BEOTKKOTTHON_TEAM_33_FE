@@ -2,11 +2,12 @@ import * as S from "./OtherDiaryCard.styles";
 import ThumbsIcon from "@assets/icons/carbon_thumbs-up.svg?react";
 import { DiaryCardProps } from "./OtherDiaryCard.types";
 import { useNavigate } from "react-router-dom";
-export const OtherDiaryCard = ({ title, userName, likeNumber, photoUrl }: DiaryCardProps) => {
+export const OtherDiaryCard = ({ id, title, userName, likeNumber, photoUrl }: DiaryCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate("/diaryDetail");
+    navigate(`/diaryDetail?from=otherCollection&diaryId=${id}`);
   };
+
   return (
     <>
       <S.CardWrapper onClick={handleClick}>

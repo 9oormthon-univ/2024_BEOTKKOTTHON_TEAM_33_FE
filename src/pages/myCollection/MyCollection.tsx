@@ -1,8 +1,9 @@
 import * as S from "./MyCollection.styles";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Swiper from "@components/Swiper/Swiper";
 import { useNavigate } from "react-router-dom";
 import useDiary from "@hooks/useDiary";
+import Spinner from "@components/Spinner/Spinner";
 
 const MyCollection = () => {
   const { data: togetherData } = useDiary(1);
@@ -11,8 +12,12 @@ const MyCollection = () => {
 
   const [currentTab, setCurrentTab] = useState("together");
 
+  const handleImgClick = (diaryId: number) => {
+    navigate(`/diaryDetail?from=myCollection&diaryId=${diaryId}`);
+  };
+
   return (
-    <>
+    <Suspense fallback={<Spinner />}>
       <S.TabBarWrapper>
         <S.TabButton onClick={() => setCurrentTab("together")}>
           {currentTab === "together" ? (
@@ -40,7 +45,10 @@ const MyCollection = () => {
                 <Swiper>
                   {data.diaryResDtoList.content.map((diary: any) => (
                     <S.CategoryImageWrapper key={diary.diaryId}>
-                      <S.CategoryImage src={diary.imageResDtoList[0]?.convertImageUrl} />
+                      <S.CategoryImage
+                        src={diary.imageResDtoList[0]?.convertImageUrl}
+                        onClick={() => handleImgClick(diary.diaryId)}
+                      />
                     </S.CategoryImageWrapper>
                   ))}
                 </Swiper>
@@ -52,12 +60,7 @@ const MyCollection = () => {
           {Array.isArray(orderData) &&
             orderData.map((data: any) =>
               data.diaryResDtoList?.content.map((content: any, index: number) => (
-                <S.ThumbnailWrapper
-                  key={index}
-                  onClick={() =>
-                    navigate(`/diaryDetail?from=myCollection&diaryId=${content.diaryId}`)
-                  }
-                >
+                <S.ThumbnailWrapper key={index} onClick={() => handleImgClick(content.diaryId)}>
                   <S.ThumbnailCover>
                     <S.ThumbnailTitle>{content.title}</S.ThumbnailTitle>
                     <S.ThumbnailDate>{content.createAt}</S.ThumbnailDate>
@@ -68,7 +71,7 @@ const MyCollection = () => {
             )}
         </S.InOrderWrapper>
       )}
-    </>
+    </Suspense>
   );
 };
 

@@ -2,9 +2,9 @@ import * as S from "./DiaryDetail.styles";
 import ImagePagination from "@components/ImagePagination/ImagePagination";
 import Tag from "@components/Tag/Tag";
 import BaseButton from "@components/BaseButton/BaseButton";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import ToggleButton from "@components/ToggleButton/ToggleButton";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Modal from "@components/Modal/Modal";
 import VoiceButtonIcon from "@assets/icons/voiceButtonIcon.svg?react";
 import LikeButtonAbled from "@assets/icons/likeButton_abled.svg?react";
@@ -17,56 +17,76 @@ import { useRecoilState } from "recoil";
 import Header from "@components/HeaderNav/HeaderNav";
 import Spinner from "@components/Spinner/Spinner";
 import useDiaryDetail from "@hooks/useDiaryDetail";
+import useShareDiary from "@hooks/useShareDiary";
+import usePostLike from "@hooks/usePostLike";
+import useDeleteLike from "@hooks/useDeleteLike";
 
 const DiaryDetail = () => {
   const [searchParams] = useSearchParams();
   const from = searchParams.get("from");
   const diaryId = Number(searchParams.get("diaryId"));
-  const { data: diaryDetailData } = diaryId && (useDiaryDetail(diaryId) as any);
 
   const [diary] = useRecoilState(diaryState);
 
-  const { mutate: reCreateDiary, isSuccess } = useReCreateDiary();
+  const navigate = useNavigate();
 
   const [isVisible, setIsVisible] = useState(false);
   const [isOn, setIsOn] = useState(false);
   const [isLike, setIsLike] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [diaryData, setDiaryData] = useState(JSON.parse(localStorage.getItem("diary") as string));
   const [images, setImages] = useState<string[]>([]);
 
+  const { data: diaryDetailData, refetch } = diaryId && (useDiaryDetail(diaryId) as any);
+  const { mutate: reCreateDiary, isSuccess } = useReCreateDiary();
+  const { mutate: postShareDiary } = useShareDiary(setIsVisible);
+  const { mutateAsync: postLike } = usePostLike(setIsLike);
+  const { mutateAsync: deleteLike } = useDeleteLike(setIsLike);
+
   const ModalProps = {
-    title: isVisible ? "함깨보기에 내 일기를\n공유할까요?" : "내 일기 공유를\n그만둘거냐는 질문",
+    title: isOn ? "함깨보기에 내 일기를\n공유할까요?" : "공유한 일기를\n비공개할까요?",
     isVisible: isVisible,
     setIsVisible: setIsVisible,
     isCancelTextExist: true
   };
 
-  const diaryData = diaryDetailData
-    ? diaryDetailData
-    : JSON.parse(localStorage.getItem("diary") as string);
+  const handleShareDiary = (diaryId: number) => {
+    postShareDiary(diaryId);
+  };
 
   useEffect(() => {
-    if (isSuccess) {
-      setIsLoading(false);
+    if (diaryData) {
+      setImages(
+        Array.isArray(diaryData?.images) &&
+          diaryData?.images.map((image: ImagesType) => {
+            return image.convertImageUrl;
+          })
+      );
     }
+  }, []);
+
+  useEffect(() => {
+    if (isSuccess) setIsLoading(false);
   }, [isSuccess]);
 
   useEffect(() => {
     if (diaryDetailData) {
-      localStorage.setItem("diary", JSON.stringify(diaryDetailData));
+      setDiaryData(diaryDetailData);
 
       setImages(
-        Array.isArray(diaryDetailData.images) &&
+        Array.isArray(diaryDetailData.imageResDtoList) &&
           diaryDetailData.imageResDtoList.map((image: ImagesType) => {
-            image.convertImageUrl;
+            return image.convertImageUrl;
           })
       );
+
+      setIsLike(diaryDetailData.isLike);
     }
   }, [diaryDetailData]);
 
   return (
-    <>
-      <Header type="textOnly" text={diaryData.title} />
+    <Suspense fallback={<Spinner />}>
+      <Header type="withPrevButton" text={diaryData?.title} />
       {isLoading ? (
         <Modal
           title="추억 일기를
@@ -94,7 +114,7 @@ const DiaryDetail = () => {
         <S.MainSectionWrapper>
           <S.ContentTitleWrapper>
             <S.TitleWrapper>
-              <S.NameText>{diaryData.title}</S.NameText>
+              <S.NameText>{diaryData?.title}</S.NameText>
               <S.DateText>{formatDate(new Date())}</S.DateText>
             </S.TitleWrapper>
             {from === "myCollection" && (
@@ -105,10 +125,10 @@ const DiaryDetail = () => {
             )}
           </S.ContentTitleWrapper>
 
-          <S.Content>{diaryData.content}</S.Content>
+          <S.Content>{diaryData?.content}</S.Content>
           <S.NameText>핵심 단어</S.NameText>
           <S.TagWrapper>
-            {diaryData.hashtags.map((tag: string, index: number) => (
+            {diaryData?.hashtags.map((tag: string, index: number) => (
               <Tag key={index}>{tag}</Tag>
             ))}
           </S.TagWrapper>
@@ -121,14 +141,14 @@ const DiaryDetail = () => {
               onClick={() => {
                 setIsLoading(true);
                 reCreateDiary({
-                  diaryId: diaryData.diaryId,
+                  diaryId: diaryData?.diaryId as number,
                   voiceText: diary.voiceText
                 });
               }}
             >
               다시 만들기
             </BaseButton>
-            <BaseButton buttonType="abled" width="50%">
+            <BaseButton buttonType="abled" width="50%" onClick={() => navigate("/")}>
               저장하기
             </BaseButton>
           </S.ButtonWrapper>
@@ -146,9 +166,14 @@ const DiaryDetail = () => {
                 <ToggleButton />
               </div>
             </S.ToggleButtonWrapper>
+
             <Modal {...ModalProps}>
-              <BaseButton buttonType="abled" width="100%">
-                {isOn ? "공유하기" : "그에 상응하는 말"}
+              <BaseButton
+                buttonType="abled"
+                width="100%"
+                onClick={() => diaryData?.diaryId && handleShareDiary(diaryData?.diaryId)}
+              >
+                {isOn ? "공유하기" : "나만보기"}
               </BaseButton>
             </Modal>
           </>
@@ -156,15 +181,22 @@ const DiaryDetail = () => {
         {from === "otherCollection" && (
           <S.ToggleButtonWrapper>
             <S.LikeButtonWrapper>
-              <button onClick={() => setIsLike(!isLike)}>
-                {isLike ? <LikeButtonAbled /> : <LikeButtonDisabled />}
+              <button
+                onClick={async () => {
+                  isLike && diaryData?.diaryId
+                    ? await deleteLike(diaryData?.diaryId as number)
+                    : await postLike(diaryData?.diaryId as number);
+                  await refetch();
+                }}
+              >
+                {diaryData?.isLike ? <LikeButtonAbled /> : <LikeButtonDisabled />}
               </button>
-              좋아요 24개
+              좋아요 {diaryData?.likeCount}개
             </S.LikeButtonWrapper>
           </S.ToggleButtonWrapper>
         )}
       </S.TogetherWrapper>
-    </>
+    </Suspense>
   );
 };
 

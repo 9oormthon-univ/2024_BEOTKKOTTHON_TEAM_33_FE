@@ -3,8 +3,8 @@ import getDiaryDetail from "@apis/getDiaryDetail";
 
 const useDiaryDetail = (diaryDetail: number) => {
   return useSuspenseQuery({
-    queryKey: ["diaryDetail"],
-    queryFn: () => getDiaryDetail(diaryDetail)
+    queryKey: ["diaryDetail", diaryDetail],
+    queryFn: async () => await getDiaryDetail(diaryDetail)
   });
 };
 

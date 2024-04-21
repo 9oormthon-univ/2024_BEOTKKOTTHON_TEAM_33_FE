@@ -57,7 +57,11 @@ const MonthItem = styled.div<{ isSelected: boolean }>`
 `;
 
 const BottomModal = ({ isOpen, onClose, setPresentMonth }: BottomModalProps) => {
-  const [selectedMonth, setSelectedMonth] = useState<number>(3);
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth() + 1;
+
+  const [selectedMonth, setSelectedMonth] = useState<number>(currentMonth);
   // const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 
   const handleMonthSelect = (month: number) => {

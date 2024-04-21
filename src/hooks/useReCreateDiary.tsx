@@ -6,7 +6,7 @@ import ReContentProps from "@/types/reContentProps";
 
 const useReCreateDiary = () => {
   return useMutation({
-    mutationFn: (content: ReContentProps) => postReDiary(content),
+    mutationFn: async (content: ReContentProps) => await postReDiary(content),
     onSuccess: (res: any) => {
       console.log("Success");
       localStorage.setItem("diary", JSON.stringify(res.data));

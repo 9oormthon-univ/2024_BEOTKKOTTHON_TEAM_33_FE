@@ -17,7 +17,7 @@ const useUpload = () => {
   const navigate = useNavigate();
 
   return useMutation({
-    mutationFn: (photos: string[]) => postUpload(photos),
+    mutationFn: async (photos: string[]) => await postUpload(photos),
     onSuccess: (res: any) => {
       const photoUrls = res.data.map((photo: responseType) => photo.convertImageUrl);
 

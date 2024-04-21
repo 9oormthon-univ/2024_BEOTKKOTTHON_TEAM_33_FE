@@ -7,11 +7,15 @@ import useOtherCollection from "@hooks/useOtherCollection";
 import { Card } from "./OtherCollection.types";
 
 const OtherCollection = () => {
+  const currentDate = new Date();
+
+  const currentMonth = currentDate.getMonth() + 1;
+
   const [isHeaderSticky, setIsHeaderSticky] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [card, setCard] = useState([]);
   const [filterOption, setFilterOption] = useState(1);
-  const [presentMonth, setPresentMonth] = useState(3);
+  const [presentMonth, setPresentMonth] = useState(currentMonth);
   const { data } = useOtherCollection({
     filter: filterOption,
     year: 2024,
@@ -43,6 +47,7 @@ const OtherCollection = () => {
     console.log("리턴된", data); //첫 렌더링시에 이 줄이 undefined로 출력됨(곧바로 응답객체가 출력되긴 하지만) : 페이지 첫 렌더링시에 (아직 data가 들어오기 전) 호출되어서 그러는듯.. 뭔가 좋은 방법?
     if (data) {
       const cardData = data.map((card: Card) => ({
+        diaryId: card.diaryId,
         title: card.title,
         writer: card.writer,
         likeCount: card.likeCount,
@@ -75,6 +80,8 @@ const OtherCollection = () => {
       <S.CollectionWrapper>
         {card.map((cards: Card) => (
           <OtherDiaryCard
+            key={cards.diaryId}
+            id={cards.diaryId}
             title={cards.title}
             userName={cards.writer}
             likeNumber={cards.likeCount}
