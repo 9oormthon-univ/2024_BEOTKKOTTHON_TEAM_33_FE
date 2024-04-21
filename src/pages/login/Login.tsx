@@ -30,7 +30,7 @@ const Login = () => {
           code: code,
           client_id: "e1b1aebac9030ea946e773bb00c46e30",
           grant_type: "authorization_code",
-          redirect_uri: "http://localhost:5173/login"
+          redirect_uri: "https://re-bom.shop/login"
         }
       })
         .then((response) => {
