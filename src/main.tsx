@@ -31,6 +31,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         </Suspense>
       </ThemeProvider>
     </RecoilRoot>
-    {/* <ReactQueryDevtools initialIsOpen={false} /> */}
   </QueryClientProvider>
 );
