@@ -154,7 +154,7 @@ const DiaryDetail = () => {
             >
               다시 만들기
             </BaseButton>
-            <BaseButton buttonType="abled" width="50%" onClick={() => navigate("/")}>
+            <BaseButton buttonType="abled" width="50%" onClick={() => window.location.assign("/")}>
               저장하기
             </BaseButton>
           </S.ButtonWrapper>
