@@ -3,6 +3,7 @@ import { HomeContent, HomeTextBox } from "./Home.styles";
 import { getRandomText } from "@utils/getHomeText";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Haebom from "@assets/icons/haebom.png";
 // test
 const Home = () => {
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ const Home = () => {
     <>
       <HomeContent>
         <HomeTextBox>{randomText}</HomeTextBox>
-        <img src="https://github.com/goormthon-Univ/2024_BEOTKKOTTHON_TEAM_33_FE/blob/develop/src/assets/icons/haebom.png?raw=trueassets/icons/haebom.png" />
+        <img src={Haebom} />
         <BaseButton buttonType="abled" children="추억 남길래요!" onClick={handleClick} />
       </HomeContent>
     </>
