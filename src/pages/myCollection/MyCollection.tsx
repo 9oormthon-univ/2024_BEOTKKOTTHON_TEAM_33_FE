@@ -1,25 +1,38 @@
 import * as S from "./MyCollection.styles";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Swiper from "@components/Swiper/Swiper";
 import { useNavigate } from "react-router-dom";
 import useDiary from "@hooks/useDiary";
 import Spinner from "@components/Spinner/Spinner";
+import { useLocation } from "react-router-dom";
 
 const MyCollection = () => {
-  const { data: togetherData } = useDiary(1);
-  const { data: orderData } = useDiary(2);
+  const { data: togetherData, refetch: refetchTogetherData } = useDiary(1);
+  const { data: orderData, refetch: refetchOrderData } = useDiary(2);
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [currentTab, setCurrentTab] = useState("together");
+  const queryParams = new URLSearchParams(location.search);
+  const tab = queryParams.get("tab");
+  const [currentTab, setCurrentTab] = useState(tab || "together");
 
   const handleImgClick = (diaryId: number) => {
     navigate(`/diaryDetail?from=myCollection&diaryId=${diaryId}`);
   };
 
+  useEffect(() => {
+    currentTab === "together" ? refetchTogetherData() : refetchOrderData();
+  }, [currentTab]);
+
   return (
     <Suspense fallback={<Spinner />}>
       <S.TabBarWrapper>
-        <S.TabButton onClick={() => setCurrentTab("together")}>
+        <S.TabButton
+          onClick={() => {
+            navigate("/myCollection?tab=together");
+            setCurrentTab("together");
+          }}
+        >
           {currentTab === "together" ? (
             <S.BoldText>모아서 보기</S.BoldText>
           ) : (
@@ -27,7 +40,12 @@ const MyCollection = () => {
           )}
           {currentTab === "together" && <S.UnderLine />}
         </S.TabButton>
-        <S.TabButton onClick={() => setCurrentTab("inOrder")}>
+        <S.TabButton
+          onClick={() => {
+            navigate("/myCollection?tab=inOrder");
+            setCurrentTab("inOrder");
+          }}
+        >
           {currentTab === "inOrder" ? (
             <S.BoldText>순서대로 보기</S.BoldText>
           ) : (
