@@ -3,12 +3,11 @@ import { useNavigate } from "react-router-dom";
 import ImagePagination from "@components/ImagePagination/ImagePagination";
 import LoginBtn from "@assets/icons/kakao_login_large_wide.png";
 import axios from "axios";
+import image1 from "@assets/icons/Voice Activated Device.jpg";
+import image2 from "@assets/icons/Users Network.jpg";
+import image3 from "@assets/icons/Sending Receiving Texts Messages.jpg";
 
-const images = [
-  "../src/assets/icons/Voice Activated Device.jpg",
-  "../src/assets/icons/Users Network.jpg",
-  "../src/assets/icons/Sending Receiving Texts Messages.jpg"
-];
+const images = [image1, image2, image3];
 
 const Login = () => {
   const [isClicked, setIsClicked] = useState(false);

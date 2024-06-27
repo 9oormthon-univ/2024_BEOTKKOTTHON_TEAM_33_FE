@@ -70,7 +70,7 @@ const BottomModal = ({ isOpen, onClose, setPresentMonth }: BottomModalProps) => 
     setPresentMonth(month);
   };
 
-  const months = [4, 3, 2, 1];
+  const months = [6, 5, 4, 3];
 
   return (
     <>

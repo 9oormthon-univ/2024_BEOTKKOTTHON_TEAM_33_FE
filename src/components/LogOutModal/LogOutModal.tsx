@@ -1,8 +1,10 @@
 import { BottomModalProps } from "./LogOutModal.types";
 import axios from "axios";
 import { ModalOverlay, ModalContent } from "./LogoutModal.styles";
+import { useNavigate } from "react-router-dom";
 
 const LogOutModal = ({ isOpen, onClose }: BottomModalProps) => {
+  const navigate = useNavigate();
   const handleLogout = () => {
     console.log("클릭");
     const kakaoAccessToken = sessionStorage.getItem("kakaoAccessToken");
@@ -17,7 +19,7 @@ const LogOutModal = ({ isOpen, onClose }: BottomModalProps) => {
       sessionStorage.removeItem("accessToken");
       sessionStorage.removeItem("refreshToken");
       sessionStorage.removeItem("kakaoAccessToken"); //이 코드 없으면 세션스토리지에서 카카오로부터 받은 accesstoken 안지워짐
-      // window.location.href = "/";
+      navigate("/onboarding");
     });
   };
   return (
