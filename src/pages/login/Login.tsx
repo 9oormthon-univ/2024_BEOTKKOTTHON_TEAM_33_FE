@@ -59,8 +59,22 @@ const Login = () => {
     }
   }, [idToken]);
   if (isClicked) {
-    window.location.href = import.meta.env.VITE_LOGIN_LOCATION_URL;
+    // window.location.href = import.meta.env.VITE_LOGIN_LOCATION_URL;
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (userAgent.includes("kakaotalk")) {
+      window.location.href = `kakaotalk://inappbrowser?url=${encodeURIComponent(
+        import.meta.env.VITE_LOGIN_LOCATION_URL
+      )}`;
+    } else if (userAgent.includes("naver")) {
+      window.location.href = `naversearchapp://inappbrowser?url=${encodeURIComponent(
+        import.meta.env.VITE_LOGIN_LOCATION_URL
+      )}`;
+    } else {
+      window.location.href = import.meta.env.VITE_LOGIN_LOCATION_URL;
+    }
   }
+
   const kakaoHandleLogin = () => {
     setIsClicked(true);
   };
