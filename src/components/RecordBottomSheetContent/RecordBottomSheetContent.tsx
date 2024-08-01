@@ -27,7 +27,7 @@ const RecordBottomSheetContent = ({
 
   const recognition = new (window as any).webkitSpeechRecognition();
   recognition.lang = "ko-KR";
-  // recognition.interimResults = false;
+  recognition.interimResults = false;
 
   recognition.onresult = (event: any) => {
     setTranscript(event.results[0][0].transcript);
