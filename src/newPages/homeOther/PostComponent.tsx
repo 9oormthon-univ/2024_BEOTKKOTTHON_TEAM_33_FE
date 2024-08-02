@@ -151,7 +151,7 @@ const PostComponent = ({
           <Icon>
             <img src={Chat} />
           </Icon>
-          3
+          0
         </IconWrapper>
         <Date>{createAt}</Date>
       </Footer>
