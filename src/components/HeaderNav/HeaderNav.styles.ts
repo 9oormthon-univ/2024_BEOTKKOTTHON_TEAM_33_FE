@@ -3,7 +3,7 @@ import { css } from "@emotion/react";
 
 const HeaderWrapper = css`
   width: 100%;
-  max-width: 780px;
+  max-width: 768px;
   position: fixed;
   height: 96px;
   top: 0;

@@ -70,7 +70,7 @@ export const TabWrapper = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  max-width: 375px;
+  max-width: 768px;
   position: fixed;
   top: 96px;
   background-color: white;

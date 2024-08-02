@@ -121,7 +121,8 @@ const PostComponent = ({
 }: NewDiaryCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/diaryDetail?from=otherCollection&diaryId=${id}`);
+    // navigate(`/diaryDetail?from=otherCollection&diaryId=${id}`);
+    navigate(`/diaryDetail?from=otherCollection&diaryId=${id}&profileUrl=${profileUrl}`);
   };
   return (
     <CardWrapper>

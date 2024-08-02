@@ -25,6 +25,7 @@ const DiaryDetail = () => {
   const [searchParams] = useSearchParams();
   const from = searchParams.get("from");
   const diaryId = Number(searchParams.get("diaryId"));
+  const profileUrl = searchParams.get("profileUrl") ?? undefined; // Get the profileUrl
 
   const [diary] = useRecoilState(diaryState);
 
@@ -117,10 +118,18 @@ const DiaryDetail = () => {
         <ImagePagination images={images} isLogin={false} />
         <S.MainSectionWrapper>
           <S.ContentTitleWrapper>
-            <S.TitleWrapper>
-              <S.NameText>{diaryData?.title}</S.NameText>
-              <S.DateText>{formatDate(new Date())}</S.DateText>
-            </S.TitleWrapper>
+            <S.ProfileWrapper>
+              {from === "otherCollection" && (
+                <S.Avatar>
+                  <img src={profileUrl} alt="Profile" />
+                </S.Avatar>
+              )}
+
+              <S.TitleWrapper>
+                <S.NameText>{diaryData?.title}</S.NameText>
+                <S.DateText>{formatDate(new Date())}</S.DateText>
+              </S.TitleWrapper>
+            </S.ProfileWrapper>
             {from === "myCollection" && (
               <S.VoiceButton>
                 <VoiceButtonIcon />

@@ -15,5 +15,5 @@ export const TagWrapper = styled.div`
 export const TagText = styled.p`
   color: #000;
 
-  ${({ theme }) => theme.text.detail1_reg};
+  ${({ theme }) => theme.text.body3_reg};
 `;
