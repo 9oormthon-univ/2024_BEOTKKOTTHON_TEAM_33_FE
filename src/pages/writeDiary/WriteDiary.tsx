@@ -98,7 +98,12 @@ const WriteDiary = () => {
             </S.PaginationWrapper>
           </>
         ) : null}
-        {isEmotionVisible ? <EmotionChoice /> : null}
+        {isEmotionVisible ? (
+          <>
+            <BotChatBubble text={"이야기 잘 들었어요!\n이때의 기분은 어떠셨나요?"} />
+            <EmotionChoice />
+          </>
+        ) : null}
       </S.ChatWrapper>
 
       {isRecording && <div style={{ height: "500px" }} />}

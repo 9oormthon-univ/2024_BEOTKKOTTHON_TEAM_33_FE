@@ -14,4 +14,5 @@ export interface NewDiaryCardProps {
   photoUrl: string;
   content: string;
   createAt: string;
+  profileUrl: string;
 }
