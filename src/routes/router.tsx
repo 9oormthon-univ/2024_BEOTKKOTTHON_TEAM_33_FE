@@ -142,8 +142,7 @@ const router = createBrowserRouter([
         path: "/location",
         element: (
           <>
-            <Header type="withNewLogo" text="" />
-            <Home />
+            <SeniorCenterMap />
             <NewBottom />
           </>
         )

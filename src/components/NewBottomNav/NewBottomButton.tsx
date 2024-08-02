@@ -38,7 +38,7 @@ const NavbarButton = ({ path }: NavbarButtonProps) => {
       }
     ],
     [
-      "/location",
+      "/seniorCenterMap",
       { label: "경로당", component: <SeniorIcon />, componentActive: <SeniorIconActive /> }
     ],
     [

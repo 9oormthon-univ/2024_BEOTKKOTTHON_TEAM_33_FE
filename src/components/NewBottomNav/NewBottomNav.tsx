@@ -33,7 +33,7 @@ const BottomNavBar = () => {
   return (
     <BottomNavbarWrapper>
       <NewButton path="/" />
-      <NewButton path="/location" />
+      <NewButton path="/seniorCenterMap" />
       <NewButton path="/lesson" />
       <NewButton path="/myInfo" />
     </BottomNavbarWrapper>
