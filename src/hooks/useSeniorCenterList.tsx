@@ -9,7 +9,7 @@ const useSeniorCenterList = (searchValue?: string) => {
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
-      const isLastPage = allPages.length >= lastPage.total_count;
+      const isLastPage = allPages.length >= (lastPage.total_count as number);
       if (isLastPage) return undefined;
       return allPages.length + 1;
     },

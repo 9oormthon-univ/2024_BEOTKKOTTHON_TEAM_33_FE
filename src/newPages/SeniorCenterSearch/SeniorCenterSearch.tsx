@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import useSeniorCenterList from "@hooks/useSeniorCenterList";
 import useIntersect from "@hooks/useIntersect";
 import Spinner from "@components/Spinner/Spinner";
+import { ProductType } from "@components/KakaoMap/KakaoMap.types";
 
 const SeniorCenterSearch = () => {
   const defaultMsg = "지도를 옮겨서\n가까운 경로당을 찾아보세요";
@@ -96,8 +97,8 @@ const SeniorCenterSearch = () => {
         ) : (
           data.results.map((item) => (
             <>
-              <div key={item.id} style={{ padding: "16px" }}>
-                <ProductCard selectedProduct={item} />
+              <div key={item?.id} style={{ padding: "16px" }}>
+                <ProductCard selectedProduct={item as ProductType} />
               </div>
               <div ref={ref} />
             </>
