@@ -1,6 +1,5 @@
 import { OnBoradingWrapper } from "./OnBoarding.styles";
-import FlowerIcon from "@assets/icons/OnBoardLogo.svg?react";
-import WhiteLogo from "@assets/icons/온보딩기억해봄.svg?react";
+import Icon from "@assets/icons/너나들이온보딩.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const OnBoarding = () => {
@@ -14,8 +13,7 @@ const OnBoarding = () => {
   return (
     <>
       <OnBoradingWrapper>
-        <FlowerIcon />
-        <WhiteLogo />
+        <Icon />
       </OnBoradingWrapper>
     </>
   );

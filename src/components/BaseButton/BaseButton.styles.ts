@@ -18,7 +18,8 @@ export const AbledButton = styled.button<BaseButtonStylesProps>`
   ${ButtonLayout}
 
   width: ${({ width }) => width || "288px"};
-  background: ${({ theme }) => theme.colors.pink[400]};
+  /* background: ${({ theme }) => theme.colors.pink[400]}; */
+  background: #00b207;
   color: var(--white-000, #fff);
   ${({ theme }) => theme.text.body1_bold};
 `;

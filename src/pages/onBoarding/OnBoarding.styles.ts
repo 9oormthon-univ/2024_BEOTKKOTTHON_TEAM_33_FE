@@ -9,7 +9,7 @@ export const OnBoradingWrapper = styled.div`
   width: 100vw;
   height: 100%;
   padding-top: 279px;
-  background-color: ${({ theme }) => theme.colors.pink[400]};
+  background-color: #00b207;
   position: absolute;
   top: 0;
 `;

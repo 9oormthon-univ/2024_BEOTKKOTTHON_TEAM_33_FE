@@ -37,5 +37,5 @@ export const TalkStartButton = styled.div<{ isPressed: boolean }>`
   /* background: #fafafa; */
   font-style: ${({ theme }) => theme.text.detail1_reg};
   color: ${({ isPressed }) => (isPressed ? "white" : "#5C5E62")};
-  background-color: ${({ isPressed }) => (isPressed ? "#FF5781" : "white")};
+  background-color: ${({ isPressed }) => (isPressed ? "#00B207" : "white")};
 `;
