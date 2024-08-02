@@ -13,6 +13,8 @@ import Header from "@components/HeaderNav/HeaderNav";
 import SeniorCenterMap from "@newPages/SeniorCenterMap/SeniorCenterMap";
 import SeniorCenterList from "@newPages/SeniorCenterList/SeniorCenterList";
 import SeniorCenterSearch from "@newPages/SeniorCenterSearch/SeniorCenterSearch";
+import BottomNavBar from "@components/NewBottomNav/NewBottomNav";
+import MyInfo from "@newPages/myInfo/MyInfo";
 
 const router = createBrowserRouter([
   {
@@ -126,6 +128,7 @@ const router = createBrowserRouter([
           </>
         )
       },
+      {
         path: "/lesson",
         element: (
           <>
