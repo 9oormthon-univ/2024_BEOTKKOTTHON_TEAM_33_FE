@@ -1,11 +1,11 @@
 import { useSuspenseInfiniteQuery } from "@tanstack/react-query";
-import getSeniorCenterList from "@apis/getSeniorCenterList";
+import postSeniorCenterList from "@apis/postSeniorCenterList";
 
 const useSeniorCenterList = (searchValue?: string) => {
   return useSuspenseInfiniteQuery({
     queryKey: ["seniorCenterList"],
     queryFn: async ({ pageParam }) => {
-      return await getSeniorCenterList(pageParam, searchValue ?? "");
+      return await postSeniorCenterList(pageParam, searchValue ?? "");
     },
     initialPageParam: 1,
     getNextPageParam: (lastPage, allPages) => {
@@ -16,6 +16,7 @@ const useSeniorCenterList = (searchValue?: string) => {
     select: (data) => {
       const results = data.pages.flatMap((page) => page.result);
       const total_count = data.pages[0].total_count;
+
       return { results, total_count };
     }
   });

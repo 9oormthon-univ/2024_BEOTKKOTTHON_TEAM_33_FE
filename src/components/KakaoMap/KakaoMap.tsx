@@ -7,8 +7,16 @@ import { MapCenter, UserPositionType, ProductType, MapProps } from "./KakaoMap.t
 import ProductCardForMap from "../ProductCard/ProductCardForMap";
 import Search from "../Search/Search";
 import SearchBar from "@components/SearchBar/SearchBar";
+import { useLocation } from "react-router-dom";
 
-const KakaoMap = ({ result }: MapProps) => {
+const KakaoMap = ({ result, _setMapCenter }: MapProps) => {
+  if (!result) return null;
+
+  const query = new URLSearchParams(useLocation().search);
+  const latitude = query.get("latitude");
+  const longitude = query.get("longitude");
+  const id = query.get("id");
+
   const [selectedProductId, setSelectedProductId] = useState<number>(
     result.length > 0 ? result[0].id : 0
   );
@@ -66,12 +74,16 @@ const KakaoMap = ({ result }: MapProps) => {
   };
 
   useEffect(() => {
-    initPosition();
+    if (!latitude && !longitude) initPosition();
+    else {
+      setMapCenter({ lat: Number(latitude), lng: Number(longitude) });
+    }
   }, []);
 
   useEffect(() => {
-    if (result.length > 0) setSelectedProductId(result[0].id);
-  }, [result]);
+    if (id) setSelectedProductId(Number(id));
+    else if (result.length > 0) setSelectedProductId(result[0].id);
+  }, [id, result]);
 
   return (
     <>
@@ -96,7 +108,7 @@ const KakaoMap = ({ result }: MapProps) => {
             />
           </MarkerClusterer>
         )}
-        <Search />
+        <Search setMapCenter={_setMapCenter} />
       </Map>
       <ProductCardForMap selectedProduct={selectedProduct as ProductType} />
       <SearchBar />

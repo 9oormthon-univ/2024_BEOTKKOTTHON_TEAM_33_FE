@@ -54,18 +54,22 @@ export const SearchButton = styled.button`
   left: 50%;
   transform: translateX(-50%);
 
-  padding: 5px 10px;
+  display: flex;
+  padding: 6px 12px;
+  align-items: center;
+  gap: 4px;
 
-  border-radius: 200px;
-  border: 1px solid ${({ theme }) => theme.colors.gray[100]};
+  border-radius: 50px;
   background: #fff;
-  box-shadow: 0px 2px 18px 3px rgba(0, 0, 0, 0.1);
-
-  ${({ theme }) => theme.text.body2_reg};
-  color: ${({ theme }) => theme.colors.pink[400]};
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.15), 0px 1px 2px 1px rgba(0, 0, 0, 0.15);
 
   z-index: 1001;
-  white-space: nowrap;
+`;
+
+export const SearchBtnTxt = styled.p`
+  color: #176d1b;
+
+  ${({ theme }) => theme.text.detail2_reg};
 `;
 
 export const clustererStyles = {

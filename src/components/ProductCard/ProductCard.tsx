@@ -10,6 +10,7 @@ interface ProductCardProps {
 
 const ProductCardForMap = ({ selectedProduct }: ProductCardProps) => {
   const {
+    id,
     facility_name,
     number_addr,
     operation_time,
@@ -22,7 +23,9 @@ const ProductCardForMap = ({ selectedProduct }: ProductCardProps) => {
 
   return (
     <S.CardWrapper
-      onClick={() => navigate(`/seniorCenterMap?latitude=${latitude}&longitude=${longitude}`)}
+      onClick={() =>
+        navigate(`/seniorCenterMap?latitude=${latitude}&longitude=${longitude}&id=${id}`)
+      }
     >
       <S.ProductTitle>{facility_name}</S.ProductTitle>
       <S.AddressWrapper>

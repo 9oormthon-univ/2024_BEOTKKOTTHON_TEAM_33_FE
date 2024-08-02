@@ -29,6 +29,7 @@ export interface ProductType {
 }
 
 export interface MapProps {
-  result: ProductType[];
-  total_count: number;
+  result: ProductType[] | undefined;
+  total_count: number | undefined;
+  _setMapCenter?: React.Dispatch<React.SetStateAction<MapCenter | undefined>>;
 }

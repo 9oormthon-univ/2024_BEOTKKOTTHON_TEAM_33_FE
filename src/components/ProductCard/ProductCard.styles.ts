@@ -16,6 +16,8 @@ export const CardWrapper = styled.div`
 
   background: #fff;
   border-bottom: 1px solid ${({ theme }) => theme.colors.gray[200]};
+
+  cursor: pointer;
 `;
 
 export const MapCardWrapper = styled.div`

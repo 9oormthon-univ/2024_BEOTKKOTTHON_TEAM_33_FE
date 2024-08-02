@@ -1,15 +1,15 @@
 import { MapProps } from "@components/KakaoMap/KakaoMap.types";
 import { flaskInstance } from "./instance";
 
-const getSeniorCenterList = async (page: number, keyword: string): Promise<MapProps> => {
-  const getSeniorCenterListURL = "/search";
+const postAroundSeniorCenter = async (latitude: number, longitude: number): Promise<MapProps> => {
+  const postAroundSeniorCenterURL = "/locations";
 
   try {
     const accessToken = sessionStorage.getItem("accessToken");
 
     const requestBody = {
-      keyword,
-      page
+      latitude,
+      longitude
     };
 
     const config = {
@@ -18,7 +18,7 @@ const getSeniorCenterList = async (page: number, keyword: string): Promise<MapPr
       }
     };
 
-    const response = await flaskInstance.post(getSeniorCenterListURL, requestBody, config);
+    const response = await flaskInstance.post(postAroundSeniorCenterURL, requestBody, config);
 
     return response.data;
   } catch (error) {
@@ -26,4 +26,4 @@ const getSeniorCenterList = async (page: number, keyword: string): Promise<MapPr
   }
 };
 
-export default getSeniorCenterList;
+export default postAroundSeniorCenter;
