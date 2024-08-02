@@ -9,7 +9,7 @@ import * as S from "./HomeOther.styles";
 import { NewCard } from "@pages/otherCollection/OtherCollection.types";
 import useOtherCollection from "@hooks/useOtherCollection";
 
-const MainComponent = () => {
+const HomeOther = () => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const [activeTab, setActiveTab] = useState<"latest" | "popular">("latest");
@@ -36,7 +36,6 @@ const MainComponent = () => {
       setActiveTab("popular");
     }
   };
-
   useEffect(() => {
     console.log("겟아이템:" + sessionStorage.getItem("accessToken"));
     if (sessionStorage.getItem("accessToken") === null) {
@@ -116,4 +115,4 @@ const MainComponent = () => {
   );
 };
 
-export default MainComponent;
+export default HomeOther;

@@ -126,14 +126,14 @@ const PostComponent = ({
           <img src={Friend} />
         </FriendButton>
       </Header>
-      <Photo url={photoUrl} />
+      <Photo url={photoUrl} onClick={handleClick} />
       <Content>
         <Title>{title}</Title>
         <Description>{content}</Description>
       </Content>
       <Footer>
         <IconWrapper>
-          <Icon onClick={handleClick}>
+          <Icon>
             <img src={Like} />
           </Icon>
           {likeNumber}

@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { css } from "@emotion/react";
 
-interface HeaderWrapperProps {
+export interface HeaderWrapperProps {
   isSticky: boolean;
 }
 export const CollectionWrapper = styled.div`
@@ -50,7 +50,7 @@ export const InnerWrapper = styled.div`
   align-items: center;
 `;
 
-const HomeContentWrapper = css`
+export const HomeContentWrapper = css`
   width: 100%;
   max-width: 780px;
   height: auto;
