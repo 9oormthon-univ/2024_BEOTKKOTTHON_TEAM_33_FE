@@ -12,6 +12,7 @@ import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
 import Header from "@components/HeaderNav/HeaderNav";
 import SeniorCenterMap from "@newPages/SeniorCenterMap/SeniorCenterMap";
 import SeniorCenterList from "@newPages/SeniorCenterList/SeniorCenterList";
+import SeniorCenterSearch from "@newPages/SeniorCenterSearch/SeniorCenterSearch";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,15 @@ const router = createBrowserRouter([
         element: (
           <>
             <SeniorCenterList />
+            <BottomNavBar />
+          </>
+        )
+      },
+      {
+        path: "/seniorCenterSearch",
+        element: (
+          <>
+            <SeniorCenterSearch />
             <BottomNavBar />
           </>
         )
