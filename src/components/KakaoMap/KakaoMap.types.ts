@@ -29,5 +29,6 @@ export interface ProductType {
 }
 
 export interface MapProps {
-  products: ProductType[];
+  result: ProductType[];
+  total_count: number;
 }

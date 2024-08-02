@@ -2,17 +2,28 @@ import * as S from "./ProductCard.styles";
 import TimerIcon from "@assets/icons/timerIcon.svg?react";
 import PhoneIcon from "@assets/icons/phoneIcon.svg?react";
 import { ProductType } from "@components/KakaoMap/KakaoMap.types";
+import { useNavigate } from "react-router-dom";
 
 interface ProductCardProps {
   selectedProduct: ProductType;
 }
 
 const ProductCardForMap = ({ selectedProduct }: ProductCardProps) => {
-  const { facility_name, number_addr, operation_time, phone_number, road_name_addr } =
-    selectedProduct;
+  const {
+    facility_name,
+    number_addr,
+    operation_time,
+    phone_number,
+    road_name_addr,
+    latitude,
+    longitude
+  } = selectedProduct;
+  const navigate = useNavigate();
 
   return (
-    <S.CardWrapper>
+    <S.CardWrapper
+      onClick={() => navigate(`/seniorCenterMap?latitude=${latitude}&longitude=${longitude}`)}
+    >
       <S.ProductTitle>{facility_name}</S.ProductTitle>
       <S.AddressWrapper>
         <S.Address>{number_addr}</S.Address>

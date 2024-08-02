@@ -3,18 +3,18 @@ import * as S from "./KakaoMap.styles";
 import { Map, MarkerClusterer } from "react-kakao-maps-sdk";
 import { ProductsMarkers } from "../ProductMarker/ProductMarker";
 import { PositionMarker } from "../PositionMarker/PositionMarker";
-import { MapProps, MapCenter, UserPositionType, ProductType } from "./KakaoMap.types";
+import { MapCenter, UserPositionType, ProductType, MapProps } from "./KakaoMap.types";
 import ProductCardForMap from "../ProductCard/ProductCardForMap";
 import Search from "../Search/Search";
 import SearchBar from "@components/SearchBar/SearchBar";
 
-const KakaoMap = ({ products }: MapProps) => {
+const KakaoMap = ({ result }: MapProps) => {
   const [selectedProductId, setSelectedProductId] = useState<number>(
-    products.length > 0 ? products[0].id : 0
+    result.length > 0 ? result[0].id : 0
   );
   const [mapCenter, setMapCenter] = useState<MapCenter>({
-    lat: products.length > 0 ? products[0].latitude : 33.450701,
-    lng: products.length > 0 ? products[0].longitude : 126.570667
+    lat: result.length > 0 ? result[0].latitude : 33.450701,
+    lng: result.length > 0 ? result[0].longitude : 126.570667
   });
   const [userPosition, setUserPosition] = useState<UserPositionType>({
     lat: null,
@@ -23,7 +23,7 @@ const KakaoMap = ({ products }: MapProps) => {
     isLoading: true
   });
 
-  const selectedProduct = products.find((product) => product.id === selectedProductId);
+  const selectedProduct = result.find((product: ProductType) => product.id === selectedProductId);
 
   const mapRef = useRef<kakao.maps.Map>(null);
 
@@ -70,10 +70,8 @@ const KakaoMap = ({ products }: MapProps) => {
   }, []);
 
   useEffect(() => {
-    if (products.length > 0) {
-      setSelectedProductId(products[0].id);
-    }
-  }, [products]);
+    if (result.length > 0) setSelectedProductId(result[0].id);
+  }, [result]);
 
   return (
     <>
@@ -89,10 +87,10 @@ const KakaoMap = ({ products }: MapProps) => {
         ref={mapRef}
       >
         {userPosition.lat && userPosition.lng ? <PositionMarker position={userPosition} /> : null}
-        {products.length > 0 && (
+        {result.length > 0 && (
           <MarkerClusterer averageCenter={true} minLevel={10} styles={[S.clustererStyles]}>
             <ProductsMarkers
-              products={products}
+              products={result}
               selectedProductId={selectedProductId}
               setSelectedProductId={setSelectedProductId}
             />

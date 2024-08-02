@@ -40,6 +40,7 @@ export const SearchBtn = styled.button`
 
 export const ListWrapper = styled.div`
   margin-top: 96px;
+  margin-bottom: 90px;
 
   width: 100%;
   height: calc(100% - 96px);
