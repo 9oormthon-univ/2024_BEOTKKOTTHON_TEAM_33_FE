@@ -4,7 +4,6 @@ export const BaseBottomSheetContentWrapper = styled.div`
   width: 100%;
   height: 220px;
   flex-shrink: 0;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

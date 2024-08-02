@@ -3,6 +3,8 @@ import { HeaderProps } from "./HeaderNav.types";
 import PeopleIcon from "@assets/icons/ion_person.svg?react";
 import PrevIcon from "@assets/icons/ion_chevron-back.svg?react";
 import LogoIcon from "@assets/icons/기억해봄.svg?react";
+import NewIcon from "@assets/icons/너나들이.svg?react";
+import NotifyIcon from "@assets/icons/ion_notifications-outline.svg?react";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import LogOutModal from "@components/LogOutModal/LogOutModal";
@@ -49,6 +51,18 @@ const Header = ({ type, text }: HeaderProps) => {
           <S.HeaderWithMiddleText>
             <span>{text}</span>
           </S.HeaderWithMiddleText>
+        </>
+      )}
+      {type === "withNewLogo" && (
+        <>
+          <S.HeaderWithLogo>
+            <S.TitleText>
+              <NewIcon />
+            </S.TitleText>
+            <button onClick={handleClick}>
+              <NotifyIcon />
+            </button>
+          </S.HeaderWithLogo>
         </>
       )}
     </>

@@ -11,6 +11,18 @@ export const TogetherWrapper = styled.div`
 
   overflow: scroll;
 `;
+export const Avatar = styled.div`
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px; /* Adjust the margin to control the space between avatar and title */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+`;
 
 export const MainSectionWrapper = styled.div`
   display: flex;
@@ -40,12 +52,12 @@ export const TitleWrapper = styled.div`
 export const NameText = styled.p`
   color: #000;
 
-  ${({ theme }) => theme.text.detail2_bold};
+  ${({ theme }) => theme.text.heading3};
 `;
 
 export const DateText = styled.p`
   color: ${({ theme }) => theme.colors.gray[400]};
-  ${({ theme }) => theme.text.detail2_reg};
+  ${({ theme }) => theme.text.body2_reg};
 `;
 
 export const VoiceButton = styled.button`
@@ -81,7 +93,7 @@ export const Content = styled.p`
 
   color: #000;
 
-  ${({ theme }) => theme.text.detail1_reg};
+  ${({ theme }) => theme.text.body1_reg};
 
   margin-top: 12px;
   margin-bottom: 20px;
@@ -122,7 +134,7 @@ export const ToggleButtonWrapper = styled.div`
 `;
 
 export const ToggleButtonText = styled.p`
-  color: ${({ theme }) => theme.colors.pink[500]};
+  color: #00b207;
   ${({ theme }) => theme.text.detail2_reg};
 `;
 
@@ -131,4 +143,10 @@ export const LikeButtonWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 4px;
+`;
+
+export const ProfileWrapper = styled.div`
+  justify-content: flex-start;
+  display: flex;
+  align-items: center;
 `;

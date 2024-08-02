@@ -14,7 +14,7 @@ export const EmotionButton = styled.div<{ width: string; active: boolean }>`
   /* background: #fafafa; */
   font-style: ${({ theme }) => theme.text.detail1_reg};
   color: ${(props) => (props.active ? "white" : "#5C5E62")};
-  background-color: ${(props) => (props.active ? "#FF5781" : "white")};
+  background-color: ${(props) => (props.active ? "#00B207" : "white")};
 `;
 
 export const EmotionWrapper = styled.div`

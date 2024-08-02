@@ -1,14 +1,14 @@
 import { Outlet, createBrowserRouter } from "react-router-dom";
 import Album from "../pages/album/Album";
 import DiaryDetail from "../pages/diaryDetail/DiaryDetail";
-import Home from "../pages/home/Home";
+import Home from "../newPages/homeOther/HomeOther";
 import Login from "../pages/login/Login";
 import MyCollection from "../pages/myCollection/MyCollection";
 import MyPage from "../pages/myPage/MyPage";
 import OnBoarding from "../pages/onBoarding/OnBoarding";
 import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
-import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
+import NewBottom from "@components/NewBottomNav/NewBottomNav";
 import Header from "@components/HeaderNav/HeaderNav";
 import SeniorCenterMap from "@newPages/SeniorCenterMap/SeniorCenterMap";
 import SeniorCenterList from "@newPages/SeniorCenterList/SeniorCenterList";
@@ -25,11 +25,18 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        // element: (
+        //   <>
+        //     <Header type="withLogo" text="" />
+        //     <Home />
+        //     <BottomNavBar />
+        //   </>
+        // )
         element: (
           <>
-            <Header type="withLogo" text="" />
+            <Header type="withNewLogo" text="" />
             <Home />
-            <BottomNavBar />
+            <NewBottom />
           </>
         )
       },
@@ -62,9 +69,10 @@ const router = createBrowserRouter([
         path: "/myCollection",
         element: (
           <>
-            <Header type="textOnly" text="나의 추억 기록함" />
+            <Header type="textOnly" text="내 정보" />
+            <MyInfo />
             <MyCollection />
-            <BottomNavBar />
+            <NewBottom />
           </>
         )
       },
@@ -78,7 +86,7 @@ const router = createBrowserRouter([
           <>
             <Header type="textOnly" text="함께보기" />
             <OtherCollection />
-            <BottomNavBar />
+            <NewBottom />
           </>
         )
       },
@@ -86,7 +94,7 @@ const router = createBrowserRouter([
         path: "/writeDiary",
         element: (
           <>
-            <Header type="withPrevButton" text="해봄이" />
+            <Header type="withPrevButton" text="도움받아 쓰기" />
             <WriteDiary />
           </>
         )
@@ -115,6 +123,36 @@ const router = createBrowserRouter([
           <>
             <SeniorCenterSearch />
             <BottomNavBar />
+          </>
+        )
+      },
+        path: "/lesson",
+        element: (
+          <>
+            <Header type="withNewLogo" text="" />
+            <Home />
+            <NewBottom />
+          </>
+        )
+      },
+      {
+        path: "/location",
+        element: (
+          <>
+            <Header type="withNewLogo" text="" />
+            <Home />
+            <NewBottom />
+          </>
+        )
+      },
+      {
+        path: "/myInfo",
+        element: (
+          <>
+            <Header type="textOnly" text="내 정보" />
+            <MyInfo />
+            <MyCollection />
+            <NewBottom />
           </>
         )
       }
