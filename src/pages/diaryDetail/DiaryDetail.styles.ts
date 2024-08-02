@@ -148,4 +148,5 @@ export const LikeButtonWrapper = styled.div`
 export const ProfileWrapper = styled.div`
   justify-content: flex-start;
   display: flex;
+  align-items: center;
 `;
