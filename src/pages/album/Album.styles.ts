@@ -63,7 +63,7 @@ export const Badge = styled.div`
 export const SelectedBadge = styled.div`
   ${BadgeLayout}
 
-  background-color: ${({ theme }) => theme.colors.pink[400]};
+  background-color: ${({ theme }) => theme.colors.green[400]};
   display: flex;
   justify-content: center;
   align-items: center;
