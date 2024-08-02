@@ -4,7 +4,7 @@ import { Map, MarkerClusterer } from "react-kakao-maps-sdk";
 import { ProductsMarkers } from "../ProductMarker/ProductMarker";
 import { PositionMarker } from "../PositionMarker/PositionMarker";
 import { MapProps, MapCenter, UserPositionType, ProductType } from "./KakaoMap.types";
-import ProductCard from "../ProductCard/ProductCard";
+import ProductCardForMap from "../ProductCard/ProductCardForMap";
 import Search from "../Search/Search";
 import SearchBar from "@components/SearchBar/SearchBar";
 
@@ -100,7 +100,7 @@ const KakaoMap = ({ products }: MapProps) => {
         )}
         <Search />
       </Map>
-      <ProductCard selectedProduct={selectedProduct as ProductType} />
+      <ProductCardForMap selectedProduct={selectedProduct as ProductType} />
       <SearchBar />
     </>
   );

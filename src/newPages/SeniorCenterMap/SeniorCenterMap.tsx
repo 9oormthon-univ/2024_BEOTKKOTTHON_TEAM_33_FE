@@ -1,8 +1,8 @@
-import * as S from "./SeniorCenter.styles";
+import * as S from "./SeniorCenterMap.styles";
 import KakaoMap from "@components/KakaoMap/KakaoMap";
-import tmpData from "./tmpData.json";
+import tmpData from "../tmpData.json";
 
-const SeniorCenter = () => {
+const SeniorCenterMap = () => {
   return (
     <S.MapContainer>
       <KakaoMap products={tmpData.products} />
@@ -10,4 +10,4 @@ const SeniorCenter = () => {
   );
 };
 
-export default SeniorCenter;
+export default SeniorCenterMap;
