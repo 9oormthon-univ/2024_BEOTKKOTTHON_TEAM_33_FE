@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 export const Background = styled.div`
   position: fixed;
-  z-index: 900;
+  z-index: 1800;
   left: 0;
   top: 0;
   width: 100%;
@@ -19,7 +19,7 @@ export const BottemSheetWrapper = styled(motion.div)`
   margin: 0 auto;
 
   max-width: 780px;
-  z-index: 1000;
+  z-index: 1900;
   background-color: #fff;
   border-radius: 15px 15px 0px 0px;
   box-shadow: ${({ theme }) => theme.shadow.dropshadow};

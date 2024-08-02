@@ -29,7 +29,7 @@ export const UserMessageWrapper = styled.div`
   ${ChatBubbleWrapper}
   color: var(--Color-Styles-white-000, #fff);
   border-radius: 16px 0px 16px 16px;
-  background: ${({ theme }) => theme.colors.pink[300]};
+  background: #00b207;
   align-self: flex-end;
   font-style: ${({ theme }) => theme.text.detail1_reg};
 `;

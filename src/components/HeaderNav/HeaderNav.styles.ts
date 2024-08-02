@@ -7,7 +7,8 @@ const HeaderWrapper = css`
   position: fixed;
   height: 96px;
   top: 0;
-  z-index: 1000;
+  z-index: 1500;
+  background-color: white;
 `;
 
 export const HeaderWithLogo = styled.div`

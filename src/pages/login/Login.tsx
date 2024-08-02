@@ -30,6 +30,7 @@ const Login = () => {
           client_id: "e1b1aebac9030ea946e773bb00c46e30",
           grant_type: "authorization_code",
           redirect_uri: "https://www.re-bom.shop/login"
+          // redirect_uri: "http://localhost:5173/login"
         }
       })
         .then((response) => {
@@ -54,7 +55,7 @@ const Login = () => {
           sessionStorage.setItem("accessToken", response.data.data.accessToken);
           sessionStorage.setItem("refreshToken", response.data.data.refreshToken);
           // TODO: 로그인버튼 클릭 후 set완료되고 홈으로 이동할때까지의 로딩상태에 대한 처리 필요
-          navigate("/"); //set 끝났을때 홈으로 네비게이팅해서 해결~
+          navigate("/");
         });
     }
   }, [idToken]);

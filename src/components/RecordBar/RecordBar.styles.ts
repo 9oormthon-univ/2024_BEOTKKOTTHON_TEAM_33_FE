@@ -8,7 +8,7 @@ export const RecordBarWrapper = styled.div<RecordBarStylesProps>`
 
   border-radius: 12px;
   background: ${({ barType, theme }) =>
-    barType === "beforeRecord" ? theme.colors.gray[100] : theme.colors.pink[300]};
+    barType === "beforeRecord" ? theme.colors.gray[100] : "#00B207"};
 
   display: flex;
   justify-content: space-between;
