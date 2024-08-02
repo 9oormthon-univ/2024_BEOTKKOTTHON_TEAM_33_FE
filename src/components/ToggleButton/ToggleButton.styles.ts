@@ -11,7 +11,7 @@ export const ToggleButtonWrapper = styled.div<ToggleButtonProps>`
   cursor: pointer;
   border-radius: 30px;
   background-color: ${({ isOn, theme }) =>
-    isOn ? theme.colors.pink.logo : theme.colors.gray[300]};
+    isOn ? theme.colors.green[400] : theme.colors.gray[300]};
 
   .handle {
     width: 24px;
