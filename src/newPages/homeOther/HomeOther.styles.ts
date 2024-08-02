@@ -81,6 +81,15 @@ export const Tab = styled.button<{ active: boolean }>`
   padding: 10px 0;
   border: none;
   border-bottom: ${({ active }) => (active ? "3px solid #000000" : "none")};
+  color: var(--Color-Styles-black-000, #151515);
+  text-align: center;
+
+  /* Text Styles/body1-bold */
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 150%; /* 24px */
 
   cursor: pointer;
   font-size: 16px;

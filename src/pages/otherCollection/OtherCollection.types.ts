@@ -18,4 +18,5 @@ export interface NewCard {
   diaryId: number;
   content: string;
   createAt: string;
+  writerPicture: string;
 }

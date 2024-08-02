@@ -25,8 +25,13 @@ const Avatar = styled.div`
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: #ddd;
   margin-right: 10px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const UserName = styled.span`
@@ -111,7 +116,8 @@ const PostComponent = ({
   likeNumber,
   photoUrl,
   content,
-  createAt
+  createAt,
+  profileUrl
 }: NewDiaryCardProps) => {
   const navigate = useNavigate();
   const handleClick = () => {
@@ -120,7 +126,9 @@ const PostComponent = ({
   return (
     <CardWrapper>
       <Header>
-        <Avatar />
+        <Avatar>
+          <img src={profileUrl} />
+        </Avatar>
         <UserName>{userName}</UserName>
         <FriendButton>
           <img src={Friend} />

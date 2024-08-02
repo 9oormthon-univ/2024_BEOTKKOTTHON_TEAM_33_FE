@@ -54,7 +54,8 @@ const HomeOther = () => {
         likeCount: card.likeCount,
         photoUrl: card.imageResDtoList[0].convertImageUrl,
         content: card.content,
-        createAt: card.createAt
+        createAt: card.createAt,
+        writerPicture: card.writerPicture
       }));
       console.log("가공된", cardData);
       setCard(cardData);
@@ -93,6 +94,7 @@ const HomeOther = () => {
             photoUrl={cards.photoUrl}
             content={cards.content}
             createAt={cards.createAt}
+            profileUrl={cards.writerPicture}
           />
         ))}
       </S.Container>
