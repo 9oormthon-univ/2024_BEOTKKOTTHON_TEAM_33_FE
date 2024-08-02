@@ -1,0 +1,144 @@
+{
+  "products": [
+    {
+      "facility_name": "성산LH경로당",
+      "id": 0,
+      "latitude": 33.45033032,
+      "longitude": 126.9108064,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 고성리 1142",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 고성동서로 33"
+    },
+    {
+      "facility_name": "한마음 요양원",
+      "id": 1,
+      "latitude": 33.44543655,
+      "longitude": 126.9134733,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 고성리 1003-3",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 고성오조로 15"
+    },
+    {
+      "facility_name": "성산읍노인복지회관",
+      "id": 2,
+      "latitude": 33.44839048,
+      "longitude": 126.9063725,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 고성리 1549-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 산성효자로 67"
+    },
+    {
+      "facility_name": "삼달1리 경로당",
+      "id": 3,
+      "latitude": 33.37409847,
+      "longitude": 126.8472648,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 삼달리 724-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 삼달로 209"
+    },
+    {
+      "facility_name": "수산1리경로당",
+      "id": 4,
+      "latitude": 33.446746,
+      "longitude": 126.8825851,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 수산리 1199-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 수산서남로 26"
+    },
+    {
+      "facility_name": "수산2리경로당",
+      "id": 5,
+      "latitude": 33.44215479,
+      "longitude": 126.8634756,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 수산리 2432-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 수산서남로 79번길 154"
+    },
+    {
+      "facility_name": "신풍리 사무소",
+      "id": 6,
+      "latitude": 33.36139893,
+      "longitude": 126.8352691,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 신풍리 726-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 신풍상동로 4"
+    },
+    {
+      "facility_name": "오조리사무소",
+      "id": 7,
+      "latitude": 33.46148582,
+      "longitude": 126.914987,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 오조리 155-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 오조로 85"
+    },
+    {
+      "facility_name": "삼달2리 경로당",
+      "id": 8,
+      "latitude": 33.36940843,
+      "longitude": 126.8687192,
+      "number_addr": "제주특별자치도 서귀포시 성산읍 삼달리 29-2",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 서귀포시 성산읍 일주동로 5252"
+    },
+    {
+      "facility_name": "하도리 경로당",
+      "id": 9,
+      "latitude": 33.51766239,
+      "longitude": 126.8836615,
+      "number_addr": "제주특별자치도 제주시 구좌읍 하도리 1318-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 제주시 구좌읍 일주동로 3425"
+    },
+    {
+      "facility_name": "상한동 복지회관",
+      "id": 10,
+      "latitude": 33.53480165,
+      "longitude": 126.8233205,
+      "number_addr": "제주특별자치도 제주시 구좌읍 한동리 947",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 제주시 구좌읍 한동로 64"
+    },
+    {
+      "facility_name": "세화요양원",
+      "id": 11,
+      "latitude": 33.52197875,
+      "longitude": 126.8528362,
+      "number_addr": "제주특별자치도 제주시 구좌읍 세화리 1558-1",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 제주시 구좌읍 세화서길 7-1"
+    },
+    {
+      "facility_name": "평대리 경로당",
+      "id": 12,
+      "latitude": 33.52838728,
+      "longitude": 126.8427599684,
+      "number_addr": "제주특별자치도 제주시 구좌읍 평대리 733",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 제주시 구좌읍 일주동로 3007"
+    },
+    {
+      "facility_name": "평대리동동 경로당",
+      "id": 13,
+      "latitude": 33.5243484,
+      "longitude": 126.8487004,
+      "number_addr": "제주특별자치도 제주시 구좌읍 평대리 362",
+      "operation_time": "월~금 09:00~18:00",
+      "phone_number": "064-710-6413",
+      "road_name_addr": "제주특별자치도 제주시 구좌읍 일주동로 3080"
+    }
+  ]
+}

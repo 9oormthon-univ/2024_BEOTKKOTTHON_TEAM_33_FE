@@ -10,7 +10,9 @@ import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
 import NewBottom from "@components/NewBottomNav/NewBottomNav";
 import Header from "@components/HeaderNav/HeaderNav";
-import MyInfo from "../newPages/myInfo/MyInfo";
+import SeniorCenterMap from "@newPages/SeniorCenterMap/SeniorCenterMap";
+import SeniorCenterList from "@newPages/SeniorCenterList/SeniorCenterList";
+import SeniorCenterSearch from "@newPages/SeniorCenterSearch/SeniorCenterSearch";
 
 const router = createBrowserRouter([
   {
@@ -98,6 +100,32 @@ const router = createBrowserRouter([
         )
       },
       {
+        path: "/seniorCenterMap",
+        element: (
+          <>
+            <SeniorCenterMap />
+            <BottomNavBar />
+          </>
+        )
+      },
+      {
+        path: "/seniorCenterList",
+        element: (
+          <>
+            <SeniorCenterList />
+            <BottomNavBar />
+          </>
+        )
+      },
+      {
+        path: "/seniorCenterSearch",
+        element: (
+          <>
+            <SeniorCenterSearch />
+            <BottomNavBar />
+          </>
+        )
+      },
         path: "/lesson",
         element: (
           <>
