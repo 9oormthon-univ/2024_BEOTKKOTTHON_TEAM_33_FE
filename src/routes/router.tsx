@@ -10,6 +10,7 @@ import OtherCollection from "../pages/otherCollection/OtherCollection";
 import WriteDiary from "../pages/writeDiary/WriteDiary";
 import BottomNavBar from "@components/BottomNavbar/BottomNavbar";
 import Header from "@components/HeaderNav/HeaderNav";
+import SeniorCenter from "@newPages/SeniorCenter";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,15 @@ const router = createBrowserRouter([
           <>
             <Header type="withPrevButton" text="해봄이" />
             <WriteDiary />
+          </>
+        )
+      },
+      {
+        path: "/seniorCenter",
+        element: (
+          <>
+            <SeniorCenter />
+            <BottomNavBar />
           </>
         )
       }
