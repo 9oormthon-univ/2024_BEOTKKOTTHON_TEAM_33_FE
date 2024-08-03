@@ -1,5 +1,4 @@
 import * as S from "./EmotionChoice.styles";
-
 import { useEffect, useState } from "react";
 import { UserChatBubble, BotChatBubble } from "@components/ChatBubble/ChatBubble";
 import useCreateDiary from "@hooks/useCreateDiary";
@@ -31,6 +30,7 @@ const EmotionChoice = () => {
   const handleTouchEnd = () => {
     setIsPressed(null); // 버튼이 터치 해제됨을 설정
   };
+
   const handleEmotionSelect = (emotion: string) => {
     var chatText = "";
     switch (emotion) {
@@ -53,22 +53,24 @@ const EmotionChoice = () => {
     setEmotionText(chatText);
     setIsChatVisible(true);
 
+    // 감정 선택 완료 후 2초 후에 diary 상태 업데이트 및 일기 생성
     setTimeout(() => {
-      setDiary({ ...diary, emotion: emotion });
+      setDiary((prevDiary) => {
+        const updatedDiary = { ...prevDiary, emotion: emotion };
+        setIsLoading(true);
+        createDiary(updatedDiary as ContentProps);
+        return updatedDiary;
+      });
     }, 2000);
   };
+
   const emotions = ["기쁨", "슬픔"];
   const emotions2 = ["분노", "두려움", "놀라움"];
 
   useEffect(() => {
-    if (diary.emotion === "") return;
-    setIsLoading(true);
-    createDiary(diary as ContentProps);
-  }, [diary]);
-
-  useEffect(() => {
     if (isSuccess) {
       setIsLoading(false);
+      console.log(diary);
     }
   }, [isSuccess]);
 
@@ -76,8 +78,7 @@ const EmotionChoice = () => {
     <>
       {isLoading ? (
         <Modal
-          title="추억 일기를
-        만들고 있어요"
+          title="추억 일기를 만들고 있어요"
           content="30초정도 걸리니 조금만 기다려주세요!"
           isVisible={isLoading}
           setIsVisible={setIsLoading}
@@ -85,12 +86,7 @@ const EmotionChoice = () => {
           <Spinner />
         </Modal>
       ) : (
-        <Modal
-          title="추억일기가
-          완성되었어요!"
-          isVisible={isSuccess}
-          setIsVisible={setIsLoading}
-        >
+        <Modal title="추억일기가 완성되었어요!" isVisible={isSuccess} setIsVisible={setIsLoading}>
           <BaseButton
             buttonType="abled"
             width="100%"
