@@ -1,5 +1,5 @@
 import { MapProps } from "@components/KakaoMap/KakaoMap.types";
-import { flaskInstance } from "./instance";
+import { instance } from "./instance";
 
 const postAroundSeniorCenter = async (latitude: number, longitude: number): Promise<MapProps> => {
   const postAroundSeniorCenterURL = "/locations";
@@ -18,7 +18,7 @@ const postAroundSeniorCenter = async (latitude: number, longitude: number): Prom
       }
     };
 
-    const response = await flaskInstance.post(postAroundSeniorCenterURL, requestBody, config);
+    const response = await instance.post(postAroundSeniorCenterURL, requestBody, config);
 
     return response.data;
   } catch (error) {

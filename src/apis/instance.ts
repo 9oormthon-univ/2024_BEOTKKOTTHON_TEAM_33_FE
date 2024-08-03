@@ -9,8 +9,3 @@ export const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
   timeout: 50000
 });
-
-export const flaskInstance = axios.create({
-  baseURL: import.meta.env.VITE_API_FLASK_BASE_URL,
-  timeout: 50000
-});
