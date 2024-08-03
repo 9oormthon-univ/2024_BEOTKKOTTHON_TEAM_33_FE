@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
 export const isRefetched = atom({
-  key: "diaryState",
+  key: "isRefetched",
   default: false
 });
